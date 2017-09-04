@@ -10,11 +10,13 @@ namespace Project
     {
         string productName;
         float productPrice;
+        int productQuantity;
 
-        public Item(string name, float price)
+        public Item(string name, float price, int quantity)
         {
             productName = name;
             productPrice = price;
+            productQuantity = quantity;
         }
 
         public float getProductPrice()
@@ -25,6 +27,11 @@ namespace Project
         public string getProductName()
         {
             return productName;
+        }
+
+        public int getProductQuantity()
+        {
+            return productQuantity;
         }
     }
 }

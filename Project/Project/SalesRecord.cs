@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Project
 {
@@ -32,15 +33,24 @@ namespace Project
             Console.WriteLine("Printing Record Data");
             Console.WriteLine("-------------------------");
             Console.WriteLine(saleTime);
+            Console.WriteLine("-------------------------");
+
             foreach (Item element in saleItems)
             {
                 Console.Write("Product Name: ");
                 Console.WriteLine(element.getProductName());
                 Console.Write("Product Price: ");
                 Console.WriteLine(element.getProductPrice());
+                Console.Write("Product Quantity: ");
+                Console.WriteLine(element.getProductQuantity());
+                Console.Write("Product Total: ");
+                Console.WriteLine(element.getProductQuantity() * element.getProductPrice());
+                Console.WriteLine("-------------------------");
             }
-            Console.Write("Totals To: ");
+
+            Console.Write("Sale Total: ");
             Console.WriteLine(saleTotal);
+            Console.WriteLine("-------------------------");
         }
 
         private void AddRecord()
@@ -65,7 +75,7 @@ namespace Project
                             saleTime = DateTime.Now;
                             foreach (Item element in saleItems)
                             {
-                                saleTotal += element.getProductPrice();
+                                saleTotal += element.getProductQuantity() * element.getProductPrice();
                             }
                             break;
                         }
@@ -78,11 +88,59 @@ namespace Project
         {
             Console.WriteLine("Please Enter an Item Name:");
             string name = Console.ReadLine();
+            while (!ValidateName(name))
+            {
+                Console.WriteLine("Please Enter a valid Item Name:");
+                name = Console.ReadLine();
+            }
 
             Console.WriteLine("Please Enter an Item Price");
-            float price = float.Parse(Console.ReadLine());
+            string stringprice = Console.ReadLine();
+            while (!ValidatePrice(stringprice))
+            {
+                Console.WriteLine("Please Enter a valid Item Price:");
+                stringprice = Console.ReadLine();
+            }
+            float price = float.Parse(stringprice);
 
-            saleItems.Add(new Item(name, price));
+
+            Console.WriteLine("Please Enter an Item Quantity");
+            string stringquantity = Console.ReadLine();
+            while (!ValidateQuantity(stringquantity))
+            {
+                Console.WriteLine("Please Enter a valid Item Quantity");
+                stringquantity = Console.ReadLine();
+            }
+            int quantity = Convert.ToInt16(stringquantity);
+
+            saleItems.Add(new Item(name, price, quantity));
+        }
+
+        private Boolean ValidateName(string name)
+        {
+            var regexItem = new Regex("^[a-zA-Z ]*$");
+            if (regexItem.IsMatch(name))
+                return true;
+            else
+                return false;
+        }
+
+        private Boolean ValidatePrice(string price)
+        {
+            var regexItem = new Regex("^[0-9]{1,3}.[0-9]{1,2}$");
+            if (regexItem.IsMatch(price))
+                return true;
+            else
+                return false;
+        }
+
+        private Boolean ValidateQuantity(string quantity)
+        {
+            var regexItem = new Regex("^[0-9]{1,2}$");
+            if (regexItem.IsMatch(quantity))
+                return true;
+            else
+                return false;
         }
     }
 }
