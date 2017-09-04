@@ -22,15 +22,30 @@ namespace Project
         {
             while (Loop)
             {
-                Console.WriteLine("This is test text, speak back to me;");
+                Console.WriteLine("Menu System");
+                Console.WriteLine("     1. Add Record");
+                Console.WriteLine("     2. Quit");
                 userInput = Console.ReadLine();
-                Console.WriteLine(userInput);
+
+                switch (userInput)
+                {
+                    case "1":
+                        {
+                            AddRecord();
+                            break;
+                        }
+                    case "2":
+                        {
+                            Loop = false;
+                            break;
+                        }
+                }
             }
         }
 
         private void AddRecord()
         {
-
+            ActiveRecord = new SalesRecord(0);
         }
     }
 }
