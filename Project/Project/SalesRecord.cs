@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Project
 {
@@ -28,6 +29,43 @@ namespace Project
             {
                 AddRecord();
             }
+        }
+
+        private void writeRecord()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            string dateTime = DateTime.Now.ToString();
+            string createddate = Convert.ToDateTime(dateTime).ToString("dd-MM-yyyy h_mm-tt");
+            path += "\\"+ createddate + ".csv";
+            Console.WriteLine(path);
+            string delimiter = ",";
+
+            int length = saleItems.Count;
+            string[][] record = new string[length][];
+
+            for (int i = 1; i < length; i++)
+            {
+                record[i] = new string[] { saleItems[i].getProductName(), saleItems[i].getProductPrice().ToString(), saleItems[i].getProductQuantity().ToString(), "\n" };
+            }
+
+            record[0][0] = "Product Name";
+            record[0][1] = "Product Price";
+            record[0][2] = "Product Quantity";
+
+            //for (int i = 1; i < length; i++)
+            //{
+            //    record[i][0] = saleItems[i].getProductName();  
+            //    record[i][1] = saleItems[i].getProductPrice().ToString();
+            //    record[i][2] = saleItems[i].getProductQuantity().ToString();
+
+            //}
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < length; i++)
+                sb.AppendLine(string.Join(delimiter, record[i]));
+
+            File.WriteAllText(path, sb.ToString());
+            
         }
 
         //Prints the contents of the Record.
@@ -123,6 +161,7 @@ namespace Project
             int quantity = Convert.ToInt16(stringquantity);
             //Add the item to the list.
             saleItems.Add(new Item(name, price, quantity));
+            writeRecord();
         }
 
         //Regex to ensure no special characters or numbers.
