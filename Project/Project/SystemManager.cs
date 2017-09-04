@@ -20,6 +20,7 @@ namespace Project
 
         private void SystemRun()
         {
+            //Loop over user input.
             while (Loop)
             {
                 Console.WriteLine("Menu System");
@@ -31,11 +32,13 @@ namespace Project
                 {
                     case "1":
                         {
+                            //Go to AddRecord.
                             AddRecord();
                             break;
                         }
                     case "2":
                         {
+                            //Break the loop and exit the program.
                             Loop = false;
                             break;
                         }
@@ -45,6 +48,7 @@ namespace Project
 
         private void AddRecord()
         {
+            //Declare a new Sales Record object and set it's mode to 'Add'
             ActiveRecord = new SalesRecord(0);
         }
     }

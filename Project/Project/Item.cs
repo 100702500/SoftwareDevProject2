@@ -14,11 +14,13 @@ namespace Project
 
         public Item(string name, float price, int quantity)
         {
+            //Sets all the variables.
             productName = name;
             productPrice = price;
             productQuantity = quantity;
         }
 
+        //Getters so that the SaleRecord has read access to these variables.
         public float getProductPrice()
         {
             return productPrice;

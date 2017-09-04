@@ -10,6 +10,7 @@ namespace Project
     class SalesRecord
     {
         enum Modes {Add, Edit};
+
         List<Item> saleItems;
         DateTime saleTime;
         float saleTotal;
@@ -17,6 +18,7 @@ namespace Project
         Boolean Loop;
         string userInput;
 
+        //Constructor, selects a method based on the Mode that was passed in.
         public SalesRecord(int Mode)
         {
             Loop = true;
@@ -28,6 +30,7 @@ namespace Project
             }
         }
 
+        //Prints the contents of the Record.
         private void PrintRecord()
         {
             Console.WriteLine("Printing Record Data");
@@ -53,9 +56,11 @@ namespace Project
             Console.WriteLine("-------------------------");
         }
 
+        //Add Record interface.
         private void AddRecord()
         {
             Console.WriteLine("ADD RECORD");
+            //Loop over user input.
             while (Loop)
             {
                 Console.WriteLine("     1. Add Item");
@@ -66,11 +71,13 @@ namespace Project
                 {
                     case "1":
                         {
+                            //If User selected Add Item, begin the method.
                             AddItem();
                             break;
                         }
                     case "2":
                         {
+                            //If user selected Complete Record, record some data and break the loop.
                             Loop = false;
                             saleTime = DateTime.Now;
                             foreach (Item element in saleItems)
@@ -81,11 +88,14 @@ namespace Project
                         }
                 }
             }
+            //Print the completed Record.
             PrintRecord();
         }
 
+        //Add invidvidual items to the sales record.
         private void AddItem()
         {
+            //Take in user input for name and perform validation.
             Console.WriteLine("Please Enter an Item Name:");
             string name = Console.ReadLine();
             while (!ValidateName(name))
@@ -93,7 +103,7 @@ namespace Project
                 Console.WriteLine("Please Enter a valid Item Name:");
                 name = Console.ReadLine();
             }
-
+            //Take in user input for price and perform validation.
             Console.WriteLine("Please Enter an Item Price");
             string stringprice = Console.ReadLine();
             while (!ValidatePrice(stringprice))
@@ -102,8 +112,7 @@ namespace Project
                 stringprice = Console.ReadLine();
             }
             float price = float.Parse(stringprice);
-
-
+            //Take in user input for quantity and perform validation.
             Console.WriteLine("Please Enter an Item Quantity");
             string stringquantity = Console.ReadLine();
             while (!ValidateQuantity(stringquantity))
@@ -112,10 +121,11 @@ namespace Project
                 stringquantity = Console.ReadLine();
             }
             int quantity = Convert.ToInt16(stringquantity);
-
+            //Add the item to the list.
             saleItems.Add(new Item(name, price, quantity));
         }
 
+        //Regex to ensure no special characters or numbers.
         private Boolean ValidateName(string name)
         {
             var regexItem = new Regex("^[a-zA-Z ]*$");
@@ -124,7 +134,7 @@ namespace Project
             else
                 return false;
         }
-
+        //Regex to ensure max 3 digits. max 2 digits float format.
         private Boolean ValidatePrice(string price)
         {
             var regexItem = new Regex("^[0-9]{1,3}.[0-9]{1,2}$");
@@ -133,7 +143,7 @@ namespace Project
             else
                 return false;
         }
-
+        //Regex to ensure double digits or less quantity.
         private Boolean ValidateQuantity(string quantity)
         {
             var regexItem = new Regex("^[0-9]{1,2}$");
