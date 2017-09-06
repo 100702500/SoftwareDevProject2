@@ -19,6 +19,19 @@ namespace Project
         Boolean Loop;
         string userInput;
 
+        public List<Item> SaleItems
+        {
+            get
+            {
+                return saleItems;
+            }
+
+            set
+            {
+                saleItems = value;
+            }
+        }
+
         //Constructor, selects a method based on the Mode that was passed in.
         public SalesRecord(int Mode)
         {
@@ -31,40 +44,34 @@ namespace Project
             }
         }
 
-        private void writeRecord()
+        //Takes the whole record and writes it to a CSV file in the desktop.
+        private void writeRecord(DateTime date)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            string dateTime = DateTime.Now.ToString();
+            string dateTime = date.ToString();
+
             string createddate = Convert.ToDateTime(dateTime).ToString("dd-MM-yyyy h_mm-tt");
             path += "\\"+ createddate + ".csv";
-            Console.WriteLine(path);
+            Console.WriteLine("Saved at: " + path);
             string delimiter = ",";
 
-            int length = saleItems.Count;
+            int length = saleItems.Count + 1; 
             string[][] record = new string[length][];
 
+            record[0] = new string[] { "Product Name", "Product Price", "Product Quantity"};
+          
             for (int i = 1; i < length; i++)
             {
-                record[i] = new string[] { saleItems[i].getProductName(), saleItems[i].getProductPrice().ToString(), saleItems[i].getProductQuantity().ToString(), "\n" };
+                record[i] = new string[] { saleItems[i-1].getProductName(), saleItems[i-1].getProductPrice().ToString(), saleItems[i-1].getProductQuantity().ToString() };
             }
 
-            record[0][0] = "Product Name";
-            record[0][1] = "Product Price";
-            record[0][2] = "Product Quantity";
-
-            //for (int i = 1; i < length; i++)
-            //{
-            //    record[i][0] = saleItems[i].getProductName();  
-            //    record[i][1] = saleItems[i].getProductPrice().ToString();
-            //    record[i][2] = saleItems[i].getProductQuantity().ToString();
-
-            //}
             StringBuilder sb = new StringBuilder();
 
             for (int i = 0; i < length; i++)
+            {
                 sb.AppendLine(string.Join(delimiter, record[i]));
-
-            File.WriteAllText(path, sb.ToString());
+            }
+             File.WriteAllText(path, sb.ToString());
             
         }
 
@@ -98,6 +105,7 @@ namespace Project
         private void AddRecord()
         {
             Console.WriteLine("ADD RECORD");
+            DateTime dateTime = DateTime.Now;
             //Loop over user input.
             while (Loop)
             {
@@ -111,6 +119,8 @@ namespace Project
                         {
                             //If User selected Add Item, begin the method.
                             AddItem();
+                            
+                            writeRecord(dateTime);
                             break;
                         }
                     case "2":
@@ -122,6 +132,7 @@ namespace Project
                             {
                                 saleTotal += element.getProductQuantity() * element.getProductPrice();
                             }
+                            
                             break;
                         }
                 }
@@ -161,7 +172,7 @@ namespace Project
             int quantity = Convert.ToInt16(stringquantity);
             //Add the item to the list.
             saleItems.Add(new Item(name, price, quantity));
-            writeRecord();
+            
         }
 
         //Regex to ensure no special characters or numbers.
