@@ -12,9 +12,11 @@ namespace Project
     public static class Readitem
     {
         const char delimiter = ',';
+        const char filedelimiter = '\\';
+        const string filetype = ".csv";
 
         /// <summary>
-        /// get file location of specified date
+        /// get file location of a specified file
         /// </summary>
         public static string datalocation()
         {
@@ -31,6 +33,20 @@ namespace Project
             }
             userInput = Console.ReadLine();
             return fileEntries[Convert.ToInt32(userInput)];
+        }
+        /// <summary>
+        /// gets the date of a file
+        /// assumption that file is of specified format
+        /// TODO: add a try throw exception for if file is failed
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
+        public static string getdatadate(string location)
+        {
+            string date;
+            string[] datearr = location.Split(filedelimiter);
+            date = datearr[datearr.Length-1].Substring(0, datearr[datearr.Length - 1].Length - filetype.Length);
+            return date;
         }
 
         /// <summary>
@@ -58,12 +74,39 @@ namespace Project
         }
 
         /// <summary>
-        /// return array of items matching clause
+        /// return array of items matching date
         /// </summary>
-        /// <param name="conditioncolumn">which column will be </param>
-        /// <param name="condition">a condition to be checked</param>
-        public static void searchforitem(int conditioncolumn/*, condition*/)
+        /// <param name="condition">a condition to be checked</param> //TODO:Validate
+        public static List<string> groupsitemsbydate(string condition)
         {
+            
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            string[] fileEntries = Directory.GetFiles(path);
+            string[] dates = new string[fileEntries.Length];
+            int count = 0;
+            foreach (string filename in fileEntries)
+            {
+                dates[count] = getdatadate(filename);
+                count++;
+            }
+            count = 0;
+
+            foreach (string date in dates)
+            {
+                dates[count] = date.Split(' ')[1];
+                count++;
+            }
+            count = 0;
+            List<string> pathresults = new List<string>();
+            foreach (string date in dates)
+            {
+                if (date == condition)
+                {
+                    pathresults.Add(fileEntries[count]);
+                }
+                count++;
+            }
+            return pathresults;
             //a = list of sales record
             //for all files in path = c
             //x = loadfile(c)

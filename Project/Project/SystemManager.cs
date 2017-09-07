@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+//remove was for testing get by date
+using System.IO;
+
+
 namespace Project
 {
     class SystemManager
@@ -26,7 +31,8 @@ namespace Project
                 Console.WriteLine("Menu System");
                 Console.WriteLine("     1. Add Record");
                 Console.WriteLine("     2. Read Record");
-                Console.WriteLine("     3. Quit");
+                Console.WriteLine("     3. Read Record of a date");
+                Console.WriteLine("     4. Quit");
                 userInput = Console.ReadLine();
 
                 switch (userInput)
@@ -39,11 +45,17 @@ namespace Project
                         }
                     case "2":
                         {
-                            //Go to AddRecord.
+                            //Go to .
                             GetRecord();
                             break;
                         }
                     case "3":
+                        {
+                            //Go to .
+                            AllRecordsofdate();
+                            break;
+                        }
+                    case "4":
                         {
                             //Break the loop and exit the program.
                             Loop = false;
@@ -60,13 +72,14 @@ namespace Project
         }
         private void GetRecord()
         {
-            List<Item> loadedfile = Readitem.loadfile(Readitem.datalocation());
+            string location = Readitem.datalocation();
+            List<Item> loadedfile = Readitem.loadfile(location);
             float saletotal = 0;
             foreach (Item file in loadedfile)
             {
                 Console.WriteLine("Printing Record Data");
                 Console.WriteLine("-------------------------");
-                Console.WriteLine("MISSING SALES TIME");// TODO: Missing sales time
+                Console.WriteLine(Readitem.getdatadate(location));
                 Console.WriteLine("-------------------------");
                 Console.Write("Product Name: ");
                 Console.WriteLine(file.getProductName());
@@ -84,6 +97,51 @@ namespace Project
             Console.WriteLine(saletotal);
             Console.WriteLine("-------------------------");
         }
-       
+        private void AllRecordsofdate()
+        {
+
+            // is to get a date
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            string[] fileEntries = Directory.GetFiles(path);
+            string userInput;
+
+            Console.WriteLine("Select Files");
+            int count = 0;
+            foreach (string fileName in fileEntries)
+            {
+                Console.WriteLine(count + ": " + fileName);
+                count++;
+            }
+            //
+            Console.WriteLine("1");
+
+            userInput = Console.ReadLine();
+            foreach (string locpath in Readitem.groupsitemsbydate(userInput)) {
+                Console.WriteLine("loop1");
+                List<Item> loadedfile = Readitem.loadfile(locpath);
+                float saletotal = 0;
+                foreach (Item file in loadedfile)
+                {
+                    Console.WriteLine("Printing Record Data");
+                    Console.WriteLine("-------------------------");
+                    Console.WriteLine(Readitem.getdatadate(locpath));
+                    Console.WriteLine("-------------------------");
+                    Console.Write("Product Name: ");
+                    Console.WriteLine(file.getProductName());
+                    Console.Write("Product Price: ");
+                    Console.WriteLine(file.getProductPrice());
+                    Console.Write("Product Quantity: ");
+                    Console.WriteLine(file.getProductQuantity());
+                    Console.Write("Product Total: ");
+                    Console.WriteLine(file.getProductQuantity() * file.getProductPrice());
+                    Console.WriteLine("-------------------------");
+                    saletotal += (file.getProductQuantity() * file.getProductPrice());
+                }
+                Console.WriteLine("loop2");
+                Console.Write("Sale Total: ");
+                Console.WriteLine(saletotal);
+                Console.WriteLine("-------------------------");
+            }
+        }
     }
 }
