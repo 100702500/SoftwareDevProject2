@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Project
 {
     //static
-    public static class Readitem
+    public static class readItem
     {
         const char delimiter = ',';
 

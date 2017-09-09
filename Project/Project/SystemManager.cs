@@ -58,32 +58,10 @@ namespace Project
             //Declare a new Sales Record object and set it's mode to 'Add'
             ActiveRecord = new SalesRecord(0);
         }
+
         private void GetRecord()
         {
-            List<Item> loadedfile = Readitem.loadfile(Readitem.datalocation());
-            float saletotal = 0;
-            foreach (Item file in loadedfile)
-            {
-                Console.WriteLine("Printing Record Data");
-                Console.WriteLine("-------------------------");
-                Console.WriteLine("MISSING SALES TIME");// TODO: Missing sales time
-                Console.WriteLine("-------------------------");
-                Console.Write("Product Name: ");
-                Console.WriteLine(file.getProductName());
-                Console.Write("Product Price: ");
-                Console.WriteLine(file.getProductPrice());
-                Console.Write("Product Quantity: ");
-                Console.WriteLine(file.getProductQuantity());
-                Console.Write("Product Total: ");
-                Console.WriteLine(file.getProductQuantity() * file.getProductPrice());
-                Console.WriteLine("-------------------------");
-                saletotal += (file.getProductQuantity() * file.getProductPrice());
-            }
-
-            Console.Write("Sale Total: ");
-            Console.WriteLine(saletotal);
-            Console.WriteLine("-------------------------");
+            ActiveRecord = new SalesRecord(1);     
         }
-       
     }
 }
