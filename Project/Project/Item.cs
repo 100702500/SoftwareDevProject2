@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    public class Item
+    class Item
     {
         string productName;
         float productPrice;

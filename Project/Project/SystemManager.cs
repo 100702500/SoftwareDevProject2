@@ -25,8 +25,7 @@ namespace Project
             {
                 Console.WriteLine("Menu System");
                 Console.WriteLine("     1. Add Record");
-                Console.WriteLine("     2. Read Record");
-                Console.WriteLine("     3. Quit");
+                Console.WriteLine("     2. Quit");
                 userInput = Console.ReadLine();
 
                 switch (userInput)
@@ -38,12 +37,6 @@ namespace Project
                             break;
                         }
                     case "2":
-                        {
-                            //Go to AddRecord.
-                            GetRecord();
-                            break;
-                        }
-                    case "3":
                         {
                             //Break the loop and exit the program.
                             Loop = false;
@@ -57,11 +50,6 @@ namespace Project
         {
             //Declare a new Sales Record object and set it's mode to 'Add'
             ActiveRecord = new SalesRecord(0);
-        }
-
-        private void GetRecord()
-        {
-            ActiveRecord = new SalesRecord(1);     
         }
     }
 }
