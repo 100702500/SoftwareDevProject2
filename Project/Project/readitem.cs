@@ -20,6 +20,11 @@ namespace Project
         public static string datalocation()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            string currentYear = DateTime.Now.ToString("yyyy");
+            string currentMonth = DateTime.Now.ToString("MM");
+
+            path += "\\data\\" + currentYear + "\\" + currentMonth;
+
             string[] fileEntries = Directory.GetFiles(path);
             string userInput;
 
@@ -43,7 +48,7 @@ namespace Project
             List<Item> saleItems = new List<Item>();
 
             string line;
-            int counter = 0;
+            //int counter = 0;
             // Read the file and display it line by line.
             System.IO.StreamReader file = new System.IO.StreamReader(location);
             string headerLine = file.ReadLine();
@@ -52,7 +57,7 @@ namespace Project
                 string[] details = line.Split(delimiter);
                 Item record = new Item(details[0], float.Parse(details[1]), int.Parse(details[2]));
                 saleItems.Add(record);
-                counter++;
+                //counter++;
             }
             file.Close();
             return saleItems;

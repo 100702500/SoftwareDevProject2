@@ -68,9 +68,10 @@ namespace Project
         {
             //Manage the path where the CSV files should be saved to.
             string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            string dateTime = saleTime.ToString();
-            string createdDate = Convert.ToDateTime(dateTime).ToString("dd-MM-yyyy h_mm_ss tt");
-            path += "\\" + createdDate + ".csv";
+            string createdYear = saleTime.ToString("yyyy");
+            string createdMonth = saleTime.ToString("MM");
+            string createdDate = saleTime.ToString("dd-MM-yyyy h_mm_ss tt");
+            path += "\\data\\" + createdYear + "\\" + createdMonth + "\\" + createdDate + ".csv";
             Console.WriteLine("Saved at: " + path);
 
             //Create an array of an array of strings made of the records contents.

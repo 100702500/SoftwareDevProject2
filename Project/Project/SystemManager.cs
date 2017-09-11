@@ -9,6 +9,7 @@ namespace Project
     class SystemManager
     {
         SalesRecord ActiveRecord;
+        Report ActiveReport;
         Boolean Loop;
         string userInput;
 
@@ -27,7 +28,8 @@ namespace Project
                 Console.WriteLine("     1. Add Record");
                 Console.WriteLine("     2. Read Record");
                 Console.WriteLine("     3. Edit Record");
-                Console.WriteLine("     4. Quit");
+                Console.WriteLine("     4. Monthly Report");
+                Console.WriteLine("     5. Quit");
                 userInput = Console.ReadLine();
 
                 switch (userInput)
@@ -51,6 +53,11 @@ namespace Project
                             break;
                         }
                     case "4":
+                        {
+                            MonthlyReport();
+                            break;
+                        }
+                    case "5":
                         {
                             //Break the loop and exit the program.
                             Loop = false;
@@ -76,6 +83,12 @@ namespace Project
         {
             //Declare a new Sales Record object and set it's mode to 'Edit'
             ActiveRecord = new SalesRecord(2);
+        }
+
+        private void MonthlyReport()
+        {
+            //Declare a new Report and set it's mode to monthly.
+            ActiveReport = new Report(0);
         }
     }
 }
