@@ -49,7 +49,6 @@
     <Compile Include="readItem.cs" />
     <Compile Include="SalesRecord.cs" />
     <Compile Include="SystemManager.cs" />
-    <Compile Include="writeItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
