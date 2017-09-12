@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Project
 {
-    class SalesRecord
+    public class SalesRecord
     {
         enum Modes {Add, Read, Edit};
 
@@ -18,6 +18,17 @@ namespace Project
 
         Boolean Loop;
         string userInput;
+
+        public DateTime getsaleTime()
+        {
+            return saleTime;
+        }
+
+        public List<Item> getsaleItems()
+        {
+            return saleItems;
+        }
+
 
         //Constructor, selects a method based on the Mode that was passed in.
         public SalesRecord(int Mode)
@@ -39,9 +50,15 @@ namespace Project
             }
         }
 
-        //Prints the contents of the Record.
+        //Calculates the total sale cost and then prints the record.
         private void PrintRecord()
         {
+            saleTotal = 0;
+            foreach (Item element in saleItems)
+            {
+                saleTotal += element.getTotalCost();
+            }
+
             Console.WriteLine("Printing Record Data");
             Console.WriteLine("-------------------------");
             Console.WriteLine(saleTime);
@@ -61,48 +78,6 @@ namespace Project
             Console.Write("Sale Total: ");
             Console.WriteLine(saleTotal);
             Console.WriteLine("-------------------------");
-        }
-
-        //Takes the whole record and writes it to a CSV file in the desktop.
-        private void writeRecord()
-        {
-            //Manage the path where the CSV files should be saved to.
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            string createdYear = saleTime.ToString("yyyy");
-            string createdMonth = saleTime.ToString("MM");
-            string createdDate = saleTime.ToString("dd-MM-yyyy h_mm_ss tt");
-            path += "\\data\\" + createdYear + "\\" + createdMonth + "\\" + createdDate + ".csv";
-            Console.WriteLine("Saved at: " + path);
-
-            //Create an array of an array of strings made of the records contents.
-            int length = saleItems.Count + 1;
-            string[][] record = new string[length][];
-            record[0] = new string[] { "Product Name", "Product Price", "Product Quantity" };
-            for (int i = 1; i < length; i++)
-            {
-                record[i] = new string[] { saleItems[i - 1].getProductName(), saleItems[i - 1].getProductPrice().ToString(), saleItems[i - 1].getProductQuantity().ToString() };
-            }
-
-            //Add , in order to produce a csv file format.
-            string delimiter = ",";
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < length; i++)
-            {
-                sb.AppendLine(string.Join(delimiter, record[i]));
-            }
-
-            //Write to the file.
-            File.WriteAllText(path, sb.ToString());
-        }
-
-        //Calculates a new total sale based on the list of items.
-        private void CalculateTotalSale()
-        {
-            saleTotal = 0;
-            foreach (Item element in saleItems)
-            {
-                saleTotal += (element.getProductPrice() * element.getProductQuantity());
-            }
         }
 
         //Extracts the file name from a given path via replace operations.
@@ -214,8 +189,7 @@ namespace Project
                             //If user selected Complete Record, write the record and end the loop.
                             Loop = false;
                             saleTime = DateTime.Now;
-                            CalculateTotalSale();
-                            writeRecord();
+                            csvManager.writeSalesRecord(this);
                             break;
                         }                     
                 }
@@ -225,11 +199,9 @@ namespace Project
         //Reads in the record, adds the sale date, 
         private void ReadRecord()
         {
-            string path = readItem.datalocation();
-            saleItems = readItem.loadfile(path);
-
+            string path = csvManager.selectFile();
+            saleItems = csvManager.readSingleFile(path);
             FileNameToDate(path);
-            CalculateTotalSale();
             PrintRecord();
         }
 
@@ -274,11 +246,10 @@ namespace Project
                         }
                 }
                 //Recalculate the total amount and print the changes to console.
-                CalculateTotalSale();
                 PrintRecord();
             }
             //Write the changes to file once the record is completed.
-            writeRecord();
+            csvManager.writeSalesRecord(this);
         }
 
         //Add invidvidual items to the sales record.
@@ -286,13 +257,10 @@ namespace Project
         {
             //Take in user input for name and perform validation.
             string name = ValidateName();
-
             //Take in user input for price and perform validation.
             float price = ValidatePrice();
-
             //Take in user input for quantity and perform validation.
             int quantity = ValidateQuantity();
-
             //Add the item to the list.
             saleItems.Add(new Item(name, price, quantity));
         }
@@ -304,7 +272,6 @@ namespace Project
             Console.WriteLine("Item Price: " + item.getProductPrice());
             //Take in user input for price and perform validation.
             float price = ValidatePrice();
-
             Console.WriteLine("Item Quantity: " + item.getProductQuantity());
             //Take in user input for quantity and perform validation.
             int quantity = ValidateQuantity();
