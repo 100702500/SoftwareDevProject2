@@ -48,6 +48,11 @@ namespace Project
             date = datearr[datearr.Length-1].Substring(0, datearr[datearr.Length - 1].Length - filetype.Length);
             return date;
         }
+        public static Boolean filetypecheck(string location)
+        {
+            string[] datearr = location.Split(filedelimiter);
+            return datearr[datearr.Length - 1].Contains(filetype);
+        }
 
         /// <summary>
         /// returns sale record
@@ -86,14 +91,20 @@ namespace Project
             int count = 0;
             foreach (string filename in fileEntries)
             {
-                dates[count] = getdatadate(filename);
+                if (filetypecheck(filename))
+                {
+                    dates[count] = getdatadate(filename);
+                }
                 count++;
             }
             count = 0;
 
             foreach (string date in dates)
             {
-                dates[count] = date.Split(' ')[1];
+                if (date != null)
+                {
+                    dates[count] = date.Split(' ')[0];
+                }
                 count++;
             }
             count = 0;

@@ -113,11 +113,10 @@ namespace Project
                 count++;
             }
             //
-            Console.WriteLine("1");
 
+            float totalsaletotal = 0;
             userInput = Console.ReadLine();
             foreach (string locpath in Readitem.groupsitemsbydate(userInput)) {
-                Console.WriteLine("loop1");
                 List<Item> loadedfile = Readitem.loadfile(locpath);
                 float saletotal = 0;
                 foreach (Item file in loadedfile)
@@ -137,11 +136,14 @@ namespace Project
                     Console.WriteLine("-------------------------");
                     saletotal += (file.getProductQuantity() * file.getProductPrice());
                 }
-                Console.WriteLine("loop2");
                 Console.Write("Sale Total: ");
                 Console.WriteLine(saletotal);
+                totalsaletotal += saletotal;
                 Console.WriteLine("-------------------------");
-            }
+            };
+            Console.Write("Total Day Sale Total: ");
+            Console.WriteLine(totalsaletotal);
+            Console.WriteLine("-------------------------");
         }
     }
 }
