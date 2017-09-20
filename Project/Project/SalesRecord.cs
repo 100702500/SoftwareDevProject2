@@ -136,7 +136,7 @@ namespace Project
         //Reads in the record and calculates the sale total, then prints to console.
         private void ReadRecord()
         {
-            saleItems = readItem.loadfile(readItem.datalocation());
+            saleItems = Readitem.loadfile(Readitem.datalocation());
             foreach (Item element in saleItems)
             {
                 saleTotal += (element.getProductPrice() * element.getProductQuantity());

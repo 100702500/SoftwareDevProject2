@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-<<<<<<< HEAD
+
 
 //remove was for testing get by date
 using System.IO;
 
 
-=======
+
 //Added line for merge fix
->>>>>>> refs/remotes/origin/master
+
 namespace Project
 {
     class SystemManager
@@ -77,31 +77,7 @@ namespace Project
 
         private void GetRecord()
         {
-<<<<<<< HEAD
-            string location = Readitem.datalocation();
-            List<Item> loadedfile = Readitem.loadfile(location);
-            float saletotal = 0;
-            foreach (Item file in loadedfile)
-            {
-                Console.WriteLine("Printing Record Data");
-                Console.WriteLine("-------------------------");
-                Console.WriteLine(Readitem.getdatadate(location));
-                Console.WriteLine("-------------------------");
-                Console.Write("Product Name: ");
-                Console.WriteLine(file.getProductName());
-                Console.Write("Product Price: ");
-                Console.WriteLine(file.getProductPrice());
-                Console.Write("Product Quantity: ");
-                Console.WriteLine(file.getProductQuantity());
-                Console.Write("Product Total: ");
-                Console.WriteLine(file.getProductQuantity() * file.getProductPrice());
-                Console.WriteLine("-------------------------");
-                saletotal += (file.getProductQuantity() * file.getProductPrice());
-            }
-
-            Console.Write("Sale Total: ");
-            Console.WriteLine(saletotal);
-            Console.WriteLine("-------------------------");
+            ActiveRecord = new SalesRecord(1);
         }
         private void AllRecordsofdate()
         {
@@ -150,10 +126,8 @@ namespace Project
             Console.Write("Total Day Sale Total: ");
             Console.WriteLine(totalsaletotal);
             Console.WriteLine("-------------------------");
-        }
-=======
-            ActiveRecord = new SalesRecord(1);     
-        }
->>>>>>> refs/remotes/origin/master
+        } 
+
+
     }
 }
