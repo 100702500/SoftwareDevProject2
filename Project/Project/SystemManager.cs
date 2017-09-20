@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 
 //remove was for testing get by date
 using System.IO;
 
 
+=======
+//Added line for merge fix
+>>>>>>> refs/remotes/origin/master
 namespace Project
 {
     class SystemManager
@@ -70,8 +74,10 @@ namespace Project
             //Declare a new Sales Record object and set it's mode to 'Add'
             ActiveRecord = new SalesRecord(0);
         }
+
         private void GetRecord()
         {
+<<<<<<< HEAD
             string location = Readitem.datalocation();
             List<Item> loadedfile = Readitem.loadfile(location);
             float saletotal = 0;
@@ -145,5 +151,9 @@ namespace Project
             Console.WriteLine(totalsaletotal);
             Console.WriteLine("-------------------------");
         }
+=======
+            ActiveRecord = new SalesRecord(1);     
+        }
+>>>>>>> refs/remotes/origin/master
     }
 }
