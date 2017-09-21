@@ -16,7 +16,7 @@ namespace DP2_V1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_Display());
+            Application.Run(new form_Mainmenu());
         }
     }
 }

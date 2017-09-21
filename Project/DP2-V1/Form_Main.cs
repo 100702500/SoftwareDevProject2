@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DP2_V1
 {
-    public partial class form_mainmenu : Form
+    public partial class form_Mainmenu : Form
     {
-        public form_mainmenu()
+        public form_Mainmenu()
         {
             InitializeComponent();
         }

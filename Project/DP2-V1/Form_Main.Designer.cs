@@ -1,6 +1,6 @@
 ﻿namespace DP2_V1
 {
-    partial class form_mainmenu
+    partial class form_Mainmenu
     {
         /// <summary>
         /// Required designer variable.
