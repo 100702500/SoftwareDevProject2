@@ -123,6 +123,7 @@
             this.BTN_EXIT.TabIndex = 2;
             this.BTN_EXIT.Text = "EXIT";
             this.BTN_EXIT.UseVisualStyleBackColor = true;
+            this.BTN_EXIT.Click += new System.EventHandler(this.BTN_EXIT_Click);
             // 
             // form_Mainmenu
             // 
