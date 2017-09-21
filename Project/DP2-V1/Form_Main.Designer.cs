@@ -61,6 +61,7 @@
             this.btn_DisplayRec.TabIndex = 2;
             this.btn_DisplayRec.Text = "Display Sales Record";
             this.btn_DisplayRec.UseVisualStyleBackColor = true;
+            this.btn_DisplayRec.Click += new System.EventHandler(this.btn_DisplayRec_Click);
             // 
             // btn_EditRec
             // 
@@ -70,6 +71,7 @@
             this.btn_EditRec.TabIndex = 1;
             this.btn_EditRec.Text = "Edit Sales Record";
             this.btn_EditRec.UseVisualStyleBackColor = true;
+            this.btn_EditRec.Click += new System.EventHandler(this.btn_EditRec_Click);
             // 
             // btn_AddRec
             // 
@@ -79,7 +81,7 @@
             this.btn_AddRec.TabIndex = 0;
             this.btn_AddRec.Text = "Add Sales Record";
             this.btn_AddRec.UseVisualStyleBackColor = true;
-            this.btn_AddRec.Click += new System.EventHandler(this.button1_Click);
+            this.btn_AddRec.Click += new System.EventHandler(this.btn_AddRec_Click);
             // 
             // cont_Report
             // 
@@ -101,6 +103,7 @@
             this.btn_GenWeek.TabIndex = 4;
             this.btn_GenWeek.Text = "Weekly Report";
             this.btn_GenWeek.UseVisualStyleBackColor = true;
+            this.btn_GenWeek.Click += new System.EventHandler(this.btn_GenWeek_Click);
             // 
             // btn_GenMonth
             // 
@@ -110,6 +113,7 @@
             this.btn_GenMonth.TabIndex = 3;
             this.btn_GenMonth.Text = "Montly Report";
             this.btn_GenMonth.UseVisualStyleBackColor = true;
+            this.btn_GenMonth.Click += new System.EventHandler(this.btn_GenMonth_Click);
             // 
             // BTN_EXIT
             // 
@@ -120,7 +124,7 @@
             this.BTN_EXIT.Text = "EXIT";
             this.BTN_EXIT.UseVisualStyleBackColor = true;
             // 
-            // form_mainmenu
+            // form_Mainmenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -128,7 +132,7 @@
             this.Controls.Add(this.BTN_EXIT);
             this.Controls.Add(this.cont_Report);
             this.Controls.Add(this.cont_Transaction);
-            this.Name = "form_mainmenu";
+            this.Name = "form_Mainmenu";
             this.Text = "PHP - SREP : Main Menu";
             this.cont_Transaction.ResumeLayout(false);
             this.cont_Report.ResumeLayout(false);
