@@ -48,6 +48,13 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "Hard ytest 1",
+            "Hard ytest 2",
+            "Hard ytest 3",
+            "Hard ytest 1",
+            "Hard ytest 4",
+            "Hard ytest 5"});
             this.listBox1.Location = new System.Drawing.Point(72, 173);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(277, 277);
