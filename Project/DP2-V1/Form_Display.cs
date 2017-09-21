@@ -26,5 +26,18 @@ namespace DP2_V1
         {
 
         }
+
+        //back
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Program.FormState.PreviousPage.Show();
+            this.Hide();
+        }
+
+        //search
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
