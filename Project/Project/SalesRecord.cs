@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Project
 {
-    class SalesRecord
+    public class SalesRecord
     {
         enum Modes {Add, Read, Edit};
 
@@ -18,6 +18,17 @@ namespace Project
 
         Boolean Loop;
         string userInput;
+
+        public DateTime getsaleTime()
+        {
+            return saleTime;
+        }
+
+        public List<Item> getsaleItems()
+        {
+            return saleItems;
+        }
+
 
         //Constructor, selects a method based on the Mode that was passed in.
         public SalesRecord(int Mode)
@@ -33,42 +44,21 @@ namespace Project
             {
                 ReadRecord();
             }
+            if (Mode == (int)Modes.Edit)
+            {
+                EditRecord();
+            }
         }
 
-        //Takes the whole record and writes it to a CSV file in the desktop.
-        private void writeRecord()
-        {
-            //Manage the path where the CSV files should be saved to.
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            string dateTime = saleTime.ToString();
-            string createdDate = Convert.ToDateTime(dateTime).ToString("dd-MM-yyyy h_mm-tt");
-            path += "\\"+ createdDate + ".csv";
-            Console.WriteLine("Saved at: " + path);
-
-            //Create an array of an array of strings made of the records contents.
-            int length = saleItems.Count + 1; 
-            string[][] record = new string[length][];
-            record[0] = new string[] { "Product Name", "Product Price", "Product Quantity"};
-            for (int i = 1; i < length; i++)
-            {
-                record[i] = new string[] { saleItems[i-1].getProductName(), saleItems[i-1].getProductPrice().ToString(), saleItems[i-1].getProductQuantity().ToString() };
-            }
-
-            //Add , in order to produce a csv file format.
-            string delimiter = ",";
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < length; i++)
-            {
-                sb.AppendLine(string.Join(delimiter, record[i]));
-            }
-
-            //Write to the file.
-            File.WriteAllText(path, sb.ToString());
-        }
-
-        //Prints the contents of the Record.
+        //Calculates the total sale cost and then prints the record.
         private void PrintRecord()
         {
+            saleTotal = 0;
+            foreach (Item element in saleItems)
+            {
+                saleTotal += element.getTotalCost();
+            }
+
             Console.WriteLine("Printing Record Data");
             Console.WriteLine("-------------------------");
             Console.WriteLine(saleTime);
@@ -88,6 +78,83 @@ namespace Project
             Console.Write("Sale Total: ");
             Console.WriteLine(saleTotal);
             Console.WriteLine("-------------------------");
+        }
+
+        //Extracts the file name from a given path via replace operations.
+        private void FileNameToDate(string path)
+        {
+            string date = Path.GetFileName(path);
+            date = date.Replace("-", "/");
+            date = date.Replace("_", ":");
+            date = date.Replace(".csv", "");
+            saleTime = Convert.ToDateTime(date);
+        }
+
+        //Regex to ensure no special characters or numbers.
+        private string ValidateName()
+        {
+            var regexItem = new Regex("^[a-zA-Z ]*$");
+            bool isNotValid = true;
+
+            Console.WriteLine("Please Enter an Item Name:");
+            userInput = Console.ReadLine();
+
+            if (regexItem.IsMatch(userInput))
+                isNotValid = false;
+
+            while (isNotValid)
+            {
+                Console.WriteLine("Please Enter a valid Item Name:");
+                userInput = Console.ReadLine();
+                if (regexItem.IsMatch(userInput))
+                    isNotValid = false;
+            }
+
+            return userInput;
+        }
+
+        //Regex to ensure max 3 digits. max 2 digits float format.
+        private float ValidatePrice()
+        {
+            var regexItem = new Regex("^[0-9]{1,3}.[0-9]{1,2}$");
+            bool isNotValid = true;
+
+            Console.WriteLine("Please Enter an Item Price");
+            userInput = Console.ReadLine();
+            if (regexItem.IsMatch(userInput))
+                isNotValid = false;
+
+            while (isNotValid)
+            {
+                Console.WriteLine("Please Enter a valid Item Price:");
+                userInput = Console.ReadLine();
+                if (regexItem.IsMatch(userInput))
+                    isNotValid = false;
+            }
+            float price = float.Parse(userInput);
+            return price;
+        }
+
+        //Regex to ensure double digits or less quantity.
+        private int ValidateQuantity()
+        {
+            var regexItem = new Regex("^[0-9]{1,2}$");
+            bool isNotValid = true;
+
+            Console.WriteLine("Please Enter an Item Quantity");
+            userInput = Console.ReadLine();
+            if (regexItem.IsMatch(userInput))
+                isNotValid = false;
+
+            while (isNotValid)
+            {
+                Console.WriteLine("Please Enter a valid Item Quantity");
+                userInput = Console.ReadLine();
+                if (regexItem.IsMatch(userInput))
+                    isNotValid = false;
+            }
+            int quantity = Convert.ToInt16(userInput);
+            return quantity;
         }
 
         //Add Record interface.
@@ -122,92 +189,94 @@ namespace Project
                             //If user selected Complete Record, write the record and end the loop.
                             Loop = false;
                             saleTime = DateTime.Now;
-                            foreach (Item element in saleItems)
-                            {
-                                saleTotal += element.getProductQuantity() * element.getProductPrice();
-                            }
-                            writeRecord();
+                            csvManager.writeSalesRecord(this);
                             break;
                         }                     
                 }
             }
         }
 
-        //Reads in the record and calculates the sale total, then prints to console.
+        //Reads in the record, adds the sale date, 
         private void ReadRecord()
         {
-            saleItems = readItem.loadfile(readItem.datalocation());
-            foreach (Item element in saleItems)
-            {
-                saleTotal += (element.getProductPrice() * element.getProductQuantity());
-            }
+            string path = csvManager.selectFile();
+            saleItems = csvManager.readSingleFile(path);
+            FileNameToDate(path);
             PrintRecord();
+        }
+
+        //Reads in the record information then allows for editing.
+        private void EditRecord()
+        {
+            ReadRecord();
+            
+            while (Loop)
+            {
+                //Writes out all the contents available for editing.
+                Console.WriteLine("Select an item to edit");
+                Console.WriteLine("0: Complete Record");
+                Console.WriteLine("1: Add New Item");
+                int count = 2;
+                foreach (Item element in saleItems)
+                {
+                    Console.WriteLine(count + ": " + element.getProductName());
+                    count++;
+                }
+                userInput = Console.ReadLine();
+
+                switch (userInput)
+                {
+                    case "0":
+                        {
+                            //Complete the edit.
+                            Loop = false;
+                            break;
+                        }
+                    case "1":
+                        {
+                            //Add a new item to the Record.
+                            AddItem();
+                            break;
+                        }
+                    default:
+                        {
+                            //Other, therefore edit the selected item.
+                            EditItem(saleItems[Convert.ToInt32(userInput) - 2], Convert.ToInt32(userInput) - 2);
+                            break;
+                        }
+                }
+                //Recalculate the total amount and print the changes to console.
+                PrintRecord();
+            }
+            //Write the changes to file once the record is completed.
+            csvManager.writeSalesRecord(this);
         }
 
         //Add invidvidual items to the sales record.
         private void AddItem()
         {
             //Take in user input for name and perform validation.
-            Console.WriteLine("Please Enter an Item Name:");
-            string name = Console.ReadLine();
-            while (!ValidateName(name))
-            {
-                Console.WriteLine("Please Enter a valid Item Name:");
-                name = Console.ReadLine();
-            }
-
+            string name = ValidateName();
             //Take in user input for price and perform validation.
-            Console.WriteLine("Please Enter an Item Price");
-            string stringprice = Console.ReadLine();
-            while (!ValidatePrice(stringprice))
-            {
-                Console.WriteLine("Please Enter a valid Item Price:");
-                stringprice = Console.ReadLine();
-            }
-            float price = float.Parse(stringprice);
-
+            float price = ValidatePrice();
             //Take in user input for quantity and perform validation.
-            Console.WriteLine("Please Enter an Item Quantity");
-            string stringquantity = Console.ReadLine();
-            while (!ValidateQuantity(stringquantity))
-            {
-                Console.WriteLine("Please Enter a valid Item Quantity");
-                stringquantity = Console.ReadLine();
-            }
-            int quantity = Convert.ToInt16(stringquantity);
-
+            int quantity = ValidateQuantity();
             //Add the item to the list.
-            saleItems.Add(new Item(name, price, quantity));  
+            saleItems.Add(new Item(name, price, quantity));
         }
 
-        //Regex to ensure no special characters or numbers.
-        private Boolean ValidateName(string name)
+        private void EditItem(Item item, int index)
         {
-            var regexItem = new Regex("^[a-zA-Z ]*$");
-            if (regexItem.IsMatch(name))
-                return true;
-            else
-                return false;
-        }
+            Console.WriteLine("Item Name: " + item.getProductName());
 
-        //Regex to ensure max 3 digits. max 2 digits float format.
-        private Boolean ValidatePrice(string price)
-        {
-            var regexItem = new Regex("^[0-9]{1,3}.[0-9]{1,2}$");
-            if (regexItem.IsMatch(price))
-                return true;
-            else
-                return false;
-        }
+            Console.WriteLine("Item Price: " + item.getProductPrice());
+            //Take in user input for price and perform validation.
+            float price = ValidatePrice();
+            Console.WriteLine("Item Quantity: " + item.getProductQuantity());
+            //Take in user input for quantity and perform validation.
+            int quantity = ValidateQuantity();
 
-        //Regex to ensure double digits or less quantity.
-        private Boolean ValidateQuantity(string quantity)
-        {
-            var regexItem = new Regex("^[0-9]{1,2}$");
-            if (regexItem.IsMatch(quantity))
-                return true;
-            else
-                return false;
-        }      
+            saleItems[index] = new Item(item.getProductName(), price, quantity);
+        }     
     }
 }

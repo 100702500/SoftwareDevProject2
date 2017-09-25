@@ -35,5 +35,15 @@ namespace Project
         {
             return productQuantity;
         }
+
+        public float getTotalCost()
+        {
+            return productPrice * productQuantity;
+        }
+
+        public void addQuantity(int quant)
+        {
+            productQuantity += quant;
+        }
     }
 }
