@@ -10,6 +10,46 @@ namespace Project
     public static class csvManager
     {
         const char delimiter = ',';
+        const char filedelimiter = '\\';
+        const string filetype = ".csv";
+
+        public static List<string> verifyCSV(string[] toVerify)
+        {
+            int count = 0;
+            List<string> ToReturn = new List<String>();
+
+            foreach (string filename in toVerify)
+            {
+                string[] dateArr = filename.Split(filedelimiter);
+
+                if (dateArr[dateArr.Length - 1].Contains(filetype))
+                {
+                    ToReturn.Add(filename);
+                }
+                count++;
+            }
+
+            return ToReturn;
+        }
+
+        public static string getDateFromPath(string location)
+        {
+            string date;
+            string[] datearr = location.Split(filedelimiter);
+            date = datearr[datearr.Length - 1].Substring(0, datearr[datearr.Length - 1].Length - filetype.Length);
+            return date;
+        }
+
+        public static void ListFiles(List<string> list)
+        {
+            Console.WriteLine("Listed Files");
+            int count = 0;
+            foreach (string fileName in list)
+            {
+                Console.WriteLine(count + ": " + getDateFromPath(fileName));
+                count++;
+            }
+        }
 
         //Select a single file within the current year and month and return it's path.
         public static string selectFile()
@@ -20,22 +60,20 @@ namespace Project
             string currentMonth = DateTime.Now.ToString("MM");
             path += "\\data\\" + currentYear + "\\" + currentMonth;
             string[] fileEntries = Directory.GetFiles(path);
+            List<string> csvEntries = verifyCSV(fileEntries);
+
             //Take user input after displaying all files in the directory.
             string userInput;
-            Console.WriteLine("Select Files");
-            int count = 0;
-            foreach (string fileName in fileEntries)
-            {
-                Console.WriteLine(count + ": " + fileName);
-                count++;
-            }
+            Console.WriteLine("Select a file");
+            ListFiles(csvEntries);
+
             userInput = Console.ReadLine();
             //Return the file selected by the user.
-            return fileEntries[Convert.ToInt32(userInput)];
+            return csvEntries[Convert.ToInt32(userInput)];
         }
 
         //Retrieves all the files from the directory of the current year and month, then returns them.
-        public static string[] selectSetOfFiles()
+        public static List<string> selectSetOfFiles()
         {
             //Scan the directory of the current year and month.
             string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -43,8 +81,36 @@ namespace Project
             string currentMonth = DateTime.Now.ToString("MM");
             path += "\\data\\" + currentYear + "\\" + currentMonth;
             string[] fileEntries = Directory.GetFiles(path);
+            List<string> csvEntries = verifyCSV(fileEntries);
+
+            ListFiles(csvEntries);
             //Return all the collected files.
-            return fileEntries;
+            return csvEntries;
+        }
+
+        public static List<string> selectFilesByDate(string condition, List<string> locations)
+        {
+            string[] test = new string[locations.Count];
+
+            int count = 0;
+            foreach (string filename in locations)
+            {
+                test[count] = getDateFromPath(locations[count]);
+                test[count] = test[count].Split(' ')[0];
+                count++;
+            }
+            count = 0;
+
+            List<string> pathresults = new List<string>();
+            foreach (string date in test)
+            {
+                if (date == condition)
+                {
+                    pathresults.Add(locations[count]);
+                }
+                count++;
+            }
+            return pathresults;
         }
 
         //Receives a path location and then reads the content of that CSV into saleItems and returns it.
@@ -68,7 +134,7 @@ namespace Project
         }
 
         //Receives a set of path locations and reads their content into saleItems and returns it.
-        public static List<Item> readSetOfFiles(string[] locations)
+        public static List<Item> readSetOfFiles(List<String> locations)
         {
             List<Item> saleItems = new List<Item>();
             string line;

@@ -9,9 +9,10 @@ namespace Project
 {
     public class Report
     {
-        enum Modes { Monthly, Weekly };
+        enum Modes { Monthly, Weekly, Daily };
 
-        string[] fileEntries; 
+        string userInput;
+        List<string> fileEntries; 
         List<Item> saleItems;
         DateTime saleTime;
 
@@ -37,6 +38,10 @@ namespace Project
             {
 
             }
+            if (Mode == (int)Modes.Daily)
+            {
+                DailyReport();
+            }
         }
 
         private void MonthlyReport()
@@ -46,6 +51,48 @@ namespace Project
             
             saleTime = DateTime.Now;
             csvManager.writeSalesReport(this);
+        }
+
+        private void DailyReport()
+        {
+            List<string> locations = csvManager.selectSetOfFiles();
+
+            float totalsaletotal = 0;
+            userInput = Console.ReadLine();
+
+            foreach (string path in csvManager.selectFilesByDate(userInput, locations))
+            //foreach (string path in Readitem.groupsitemsbydate(userInput))
+            {
+                List<Item> loadedfile = csvManager.readSingleFile(path);
+                float saletotal = 0;
+
+                foreach (Item file in loadedfile)
+                {
+                    Console.WriteLine("Printing Record Data");
+                    Console.WriteLine("-------------------------");
+                    Console.WriteLine(csvManager.getDateFromPath(path));
+                    Console.WriteLine("-------------------------");
+                    Console.Write("Product Name: ");
+                    Console.WriteLine(file.getProductName());
+                    Console.Write("Product Price: ");
+                    Console.WriteLine(file.getProductPrice());
+                    Console.Write("Product Quantity: ");
+                    Console.WriteLine(file.getProductQuantity());
+                    Console.Write("Product Total: ");
+                    Console.WriteLine(file.getProductQuantity() * file.getProductPrice());
+                    Console.WriteLine("-------------------------");
+                    saletotal += (file.getProductQuantity() * file.getProductPrice());
+                }
+
+                Console.Write("Sale Total: ");
+                Console.WriteLine(saletotal);
+                totalsaletotal += saletotal;
+                Console.WriteLine("-------------------------");
+            };
+
+            Console.Write("Total Day Sale Total: ");
+            Console.WriteLine(totalsaletotal);
+            Console.WriteLine("-------------------------");
         }
     }
 }

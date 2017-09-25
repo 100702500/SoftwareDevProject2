@@ -51,7 +51,7 @@ namespace Project
                         }
                     case "3":
                         {
-                            AllRecordsofdate();
+                            DailyReport();
                             break;
                         }
                     case "4":
@@ -99,52 +99,9 @@ namespace Project
             ActiveReport = new Report(0);
         }
 
-        private void AllRecordsofdate()
+        private void DailyReport()
         {
-
-            // is to get a date
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            string[] fileEntries = Directory.GetFiles(path);
-            string userInput;
-
-            Console.WriteLine("Select Files");
-            int count = 0;
-            foreach (string fileName in fileEntries)
-            {
-                Console.WriteLine(count + ": " + fileName);
-                count++;
-            }
-
-            float totalsaletotal = 0;
-            userInput = Console.ReadLine();
-            foreach (string locpath in Readitem.groupsitemsbydate(userInput)) {
-                List<Item> loadedfile = Readitem.loadfile(locpath);
-                float saletotal = 0;
-                foreach (Item file in loadedfile)
-                {
-                    Console.WriteLine("Printing Record Data");
-                    Console.WriteLine("-------------------------");
-                    Console.WriteLine(Readitem.getdatadate(locpath));
-                    Console.WriteLine("-------------------------");
-                    Console.Write("Product Name: ");
-                    Console.WriteLine(file.getProductName());
-                    Console.Write("Product Price: ");
-                    Console.WriteLine(file.getProductPrice());
-                    Console.Write("Product Quantity: ");
-                    Console.WriteLine(file.getProductQuantity());
-                    Console.Write("Product Total: ");
-                    Console.WriteLine(file.getProductQuantity() * file.getProductPrice());
-                    Console.WriteLine("-------------------------");
-                    saletotal += (file.getProductQuantity() * file.getProductPrice());
-                }
-                Console.Write("Sale Total: ");
-                Console.WriteLine(saletotal);
-                totalsaletotal += saletotal;
-                Console.WriteLine("-------------------------");
-            };
-            Console.Write("Total Day Sale Total: ");
-            Console.WriteLine(totalsaletotal);
-            Console.WriteLine("-------------------------");
-        } 
+            ActiveReport = new Report(2);
+        }
     }
 }

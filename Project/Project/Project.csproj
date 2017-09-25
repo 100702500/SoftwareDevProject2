@@ -48,7 +48,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report.cs" />
-    <Compile Include="readitem.cs" />
     <Compile Include="SalesRecord.cs" />
     <Compile Include="SystemManager.cs" />
   </ItemGroup>
