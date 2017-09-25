@@ -9,12 +9,13 @@ namespace Project
 {
     public class Report
     {
-        enum Modes { Monthly, Weekly, Daily };
+        enum Modes { Monthly, Weekly, Daily, MonthlyEstimate };
 
         string userInput;
         List<string> fileEntries; 
         List<Item> saleItems;
         DateTime saleTime;
+        Random random;
 
         public DateTime getsaleTime()
         {
@@ -29,6 +30,7 @@ namespace Project
         public Report(int Mode)
         {
             saleItems = new List<Item>();
+            random = new Random();
 
             if (Mode == (int)Modes.Monthly)
             {
@@ -41,6 +43,10 @@ namespace Project
             if (Mode == (int)Modes.Daily)
             {
                 DailyReport();
+            }
+            if (Mode == (int)Modes.MonthlyEstimate)
+            {
+                MonthlyEstimate();
             }
         }
 
@@ -61,7 +67,6 @@ namespace Project
             userInput = Console.ReadLine();
 
             foreach (string path in csvManager.selectFilesByDate(userInput, locations))
-            //foreach (string path in Readitem.groupsitemsbydate(userInput))
             {
                 List<Item> loadedfile = csvManager.readSingleFile(path);
                 float saletotal = 0;
@@ -93,6 +98,53 @@ namespace Project
             Console.Write("Total Day Sale Total: ");
             Console.WriteLine(totalsaletotal);
             Console.WriteLine("-------------------------");
+        }
+
+        private void MonthlyEstimate()
+        {
+            fileEntries = csvManager.selectSetOfFiles();
+            saleItems = csvManager.readSetOfFiles(fileEntries);
+
+            List<Item> predictedSales = new List<Item>();
+
+            foreach (Item element in saleItems)
+            {
+                predictedSales.Add(new Item(element.getProductName(), element.getProductPrice(), PerformEstimateMagic(element.getProductQuantity())));
+            }
+
+            saleItems = predictedSales;
+
+            saleTime = DateTime.Now;
+            csvManager.writeSalesReport(this);
+        }
+
+        private int PerformEstimateMagic(int baseQuantity)
+        {
+            int returnme = 0;
+            if (baseQuantity < 11)
+            {
+                returnme = random.Next(-3, 3) + baseQuantity;
+                if (returnme < 0)
+                    returnme = 0;
+                return returnme;
+            }
+            else if (baseQuantity < 21)
+            {
+                returnme = random.Next(-5, 5) + baseQuantity;
+                return returnme;
+            }
+            else if (baseQuantity < 31)
+            {
+                returnme = random.Next(-6, 6) + baseQuantity;
+                return returnme;
+            }
+            else if (baseQuantity > 30)
+            {
+                returnme = random.Next(-(baseQuantity / 5), (baseQuantity / 5)) + baseQuantity;
+                return returnme;
+            }
+            else
+                return baseQuantity;
         }
     }
 }
