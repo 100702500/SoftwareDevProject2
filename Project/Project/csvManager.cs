@@ -13,6 +13,12 @@ namespace Project
         const char filedelimiter = '\\';
         const string filetype = ".csv";
 
+
+        /// <summary>
+        /// takes a list of file locations and checks if they have the csv file type. Only adds vaild files.
+        /// </summary>
+        /// <param name="toVerify"></param>
+        /// <returns>a list of file locations</returns>
         public static List<string> verifyCSV(string[] toVerify)
         {
             int count = 0;
@@ -32,6 +38,11 @@ namespace Project
             return ToReturn;
         }
 
+        /// <summary>
+        /// takes a valid location and returns the date
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns>date time in dd/mm/yyyy hh:mm:ss</returns>
         public static string getDateFromPath(string location)
         {
             string date;
@@ -40,6 +51,10 @@ namespace Project
             return date;
         }
 
+        /// <summary>
+        /// This method is only valid in a console application
+        /// </summary>
+        /// <param name="list"></param>
         public static void ListFiles(List<string> list)
         {
             Console.WriteLine("Listed Files");
@@ -51,16 +66,32 @@ namespace Project
             }
         }
 
-        //Select a single file within the current year and month and return it's path.
-        public static string selectFile()
+        /// <summary>
+        /// returns a folder path based on year and month
+        /// </summary>
+        /// <param name="year">is not validated</param>
+        /// <param name="month">is not validated</param>
+        /// <returns></returns>
+        public static string folderpathdate(string year, string month)
         {
             //Scan the directory of the current year and month.
             string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            string currentYear = DateTime.Now.ToString("yyyy");
-            string currentMonth = DateTime.Now.ToString("MM");
-            path += "\\data\\" + currentYear + "\\" + currentMonth;
-            string[] fileEntries = Directory.GetFiles(path);
-            List<string> csvEntries = verifyCSV(fileEntries);
+            path += "\\data\\" + year + "\\" + month;
+            return path;
+        }
+        //only year
+        public static string folderpathdate(string year)
+        {
+            //Scan the directory of the current year and month.
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            path += "\\data\\" + year;
+            return path;
+        }
+
+        //Select a single file within the current year and month and return it's path.
+        public static string selectFile()
+        {
+            List<string> csvEntries = selectSetOfFiles();
 
             //Take user input after displaying all files in the directory.
             string userInput;
@@ -75,15 +106,13 @@ namespace Project
         //Retrieves all the files from the directory of the current year and month, then returns them.
         public static List<string> selectSetOfFiles()
         {
-            //Scan the directory of the current year and month.
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             string currentYear = DateTime.Now.ToString("yyyy");
             string currentMonth = DateTime.Now.ToString("MM");
-            path += "\\data\\" + currentYear + "\\" + currentMonth;
+            string path = folderpathdate(currentYear, currentMonth);
+
             string[] fileEntries = Directory.GetFiles(path);
             List<string> csvEntries = verifyCSV(fileEntries);
 
-            ListFiles(csvEntries);
             //Return all the collected files.
             return csvEntries;
         }
@@ -93,15 +122,18 @@ namespace Project
             string[] test = new string[locations.Count];
 
             int count = 0;
+            //this gets the date and disregards the time
             foreach (string filename in locations)
             {
-                test[count] = getDateFromPath(locations[count]);
+                test[count] = getDateFromPath(filename);
                 test[count] = test[count].Split(' ')[0];
                 count++;
             }
             count = 0;
 
             List<string> pathresults = new List<string>();
+            //if the date is the same as the required date get its path
+            //TODO: seperate into dd mm yyyy
             foreach (string date in test)
             {
                 if (date == condition)
@@ -142,12 +174,11 @@ namespace Project
             System.IO.StreamReader file;
             string[] details;
             Item record;
-            bool sameitemflag;
 
             //For each file, do the following.
-            foreach (string element in locations)
+            foreach (string location in locations)
             {
-                file = new System.IO.StreamReader(element);
+                file = new System.IO.StreamReader(location);
                 //Skip the header line.
                 headerLine = file.ReadLine();
                 //Read the contents of the file into saleItems until EoF is reached.
@@ -155,20 +186,7 @@ namespace Project
                 {
                     details = line.Split(delimiter);
                     record = new Item(details[0], float.Parse(details[1]), int.Parse(details[2]));
-                    sameitemflag = false;
-                    //Check if the new item name is unique.
-                    foreach (Item Element in saleItems)
-                    {
-                        //If it isn't, add quantities rather than adding the entire new item.
-                        if (record.getProductName() == Element.getProductName())
-                        {
-                            Element.addQuantity(record.getProductQuantity());
-                            sameitemflag = true;
-                        }
-                    }
-                    //If item is unique, add it to the list.
-                    if (!sameitemflag)
-                        saleItems.Add(record);
+                    saleItems.Add(record);
                 }
                 file.Close();
             }
@@ -176,15 +194,40 @@ namespace Project
             return saleItems;
         }
 
+        //Receives a set of path locations and reads their content into saleItems and returns it.
+        public static List<Item> condenseitems(List<Item> items)
+        {
+            List<Item> saleItems = new List<Item>();
+            saleItems.Add(new Item("void", (float)0.00, 1));
+            foreach (Item i in items)
+            {
+                foreach (Item s in saleItems)
+                {
+                    if (s.getProductName() == i.getProductName())
+                    {
+                        s.addQuantity(i.getProductQuantity());                    
+                        break;
+                    }
+                    else
+                    {
+                        saleItems.Add(i);
+                        break;
+                    }
+                }
+            }
+            saleItems.RemoveAt(0);
+            return saleItems;
+        }
+
         //Writes a CSV file to the current year and month folder.
         public static void writeSalesRecord(SalesRecord input)
         {
             //Manage the path where the CSV files should be saved to.
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             string createdYear = input.getsaleTime().ToString("yyyy");
             string createdMonth = input.getsaleTime().ToString("MM");
+            string path = folderpathdate(createdYear, createdMonth);
             string createdDate = input.getsaleTime().ToString("dd-MM-yyyy h_mm_ss tt");
-            path += "\\data\\" + createdYear + "\\" + createdMonth + "\\" + createdDate + ".csv";
+            path += "\\" + createdDate + ".csv";
             Console.WriteLine("Saved at: " + path);
             //Create an array of an array of strings made of the records contents.
             int length = input.getsaleItems().Count + 1;
@@ -209,10 +252,10 @@ namespace Project
         public static void writeSalesReport(Report input)
         {
             //Manage the path where the CSV files should be saved to.
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             string createdYear = input.getsaleTime().ToString("yyyy");
+            string path = folderpathdate(createdYear);
             string createdDate = input.getsaleTime().ToString("dd-MM-yyyy h_mm_ss tt");
-            path += "\\data\\" + createdYear + "\\Reports\\" + createdDate + ".csv";
+            path += "\\Reports\\" + createdDate + ".csv";
             Console.WriteLine("Saved at: " + path);
             //Create an array of an array of strings made of the records contents.
             int length = input.getsaleItems().Count + 1;

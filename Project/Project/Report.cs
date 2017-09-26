@@ -48,7 +48,8 @@ namespace Project
         {
             fileEntries = csvManager.selectSetOfFiles();
             saleItems = csvManager.readSetOfFiles(fileEntries);
-            
+            saleItems = csvManager.condenseitems(saleItems);
+
             saleTime = DateTime.Now;
             csvManager.writeSalesReport(this);
         }
@@ -58,6 +59,9 @@ namespace Project
             List<string> locations = csvManager.selectSetOfFiles();
 
             float totalsaletotal = 0;
+
+            csvManager.ListFiles(csvManager.selectSetOfFiles());
+
             userInput = Console.ReadLine();
 
             foreach (string path in csvManager.selectFilesByDate(userInput, locations))
