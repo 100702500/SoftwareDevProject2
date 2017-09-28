@@ -15,6 +15,7 @@ namespace Project
         List<Item> saleItems;
         DateTime saleTime;
         float saleTotal;
+        Stocks itemstock;
 
         Boolean Loop;
         string userInput;
@@ -31,8 +32,9 @@ namespace Project
 
 
         //Constructor, selects a method based on the Mode that was passed in.
-        public SalesRecord(int Mode)
+        public SalesRecord(int Mode, Stocks stock)
         {
+            itemstock = stock;
             Loop = true;
             saleItems = new List<Item>();
 
@@ -90,71 +92,49 @@ namespace Project
             saleTime = Convert.ToDateTime(date);
         }
 
-        //Regex to ensure no special characters or numbers.
-        private string ValidateName()
+        /// <summary>
+        /// Regex to ensure no special characters or numbers.
+        /// </summary>
+        /// <returns></returns>
+        
+        private bool ValidateBarcode(string name)
         {
-            var regexItem = new Regex("^[a-zA-Z ]*$");
-            bool isNotValid = true;
+            var regexItem = new Regex("^d +$");
+            bool isValid = false;
+            
+            if (regexItem.IsMatch(name))
+                isValid = true;
 
-            Console.WriteLine("Please Enter an Item Name:");
-            userInput = Console.ReadLine();
+            if (itemstock.contains(Stocks.fields.barcode, name))
+                isValid = true;
 
-            if (regexItem.IsMatch(userInput))
-                isNotValid = false;
-
-            while (isNotValid)
-            {
-                Console.WriteLine("Please Enter a valid Item Name:");
-                userInput = Console.ReadLine();
-                if (regexItem.IsMatch(userInput))
-                    isNotValid = false;
-            }
-
-            return userInput;
+            return isValid;
         }
 
         //Regex to ensure max 3 digits. max 2 digits float format.
-        private float ValidatePrice()
+        
+        private bool ValidatePrice(float price)
         {
             var regexItem = new Regex("^[0-9]{1,3}.[0-9]{1,2}$");
-            bool isNotValid = true;
+            bool isValid = false;
 
-            Console.WriteLine("Please Enter an Item Price");
-            userInput = Console.ReadLine();
-            if (regexItem.IsMatch(userInput))
-                isNotValid = false;
+            if (regexItem.IsMatch(price.ToString()))
+                isValid = true;
 
-            while (isNotValid)
-            {
-                Console.WriteLine("Please Enter a valid Item Price:");
-                userInput = Console.ReadLine();
-                if (regexItem.IsMatch(userInput))
-                    isNotValid = false;
-            }
-            float price = float.Parse(userInput);
-            return price;
+            return isValid;
         }
 
         //Regex to ensure double digits or less quantity.
-        private int ValidateQuantity()
+        /// string name, float price, int qty
+        private bool ValidateQuantity(int qty)
         {
             var regexItem = new Regex("^[0-9]{1,2}$");
-            bool isNotValid = true;
+            bool isValid = false;
 
-            Console.WriteLine("Please Enter an Item Quantity");
-            userInput = Console.ReadLine();
-            if (regexItem.IsMatch(userInput))
-                isNotValid = false;
+            if (regexItem.IsMatch(qty.ToString()))
+                isValid = true;
 
-            while (isNotValid)
-            {
-                Console.WriteLine("Please Enter a valid Item Quantity");
-                userInput = Console.ReadLine();
-                if (regexItem.IsMatch(userInput))
-                    isNotValid = false;
-            }
-            int quantity = Convert.ToInt16(userInput);
-            return quantity;
+            return isValid;
         }
 
         //Add Record interface.
@@ -175,7 +155,18 @@ namespace Project
                     case "1":
                         {
                             //If User selected Add Item, begin the method.
-                            AddItem();
+                            string a = Console.ReadLine();
+                            float b = float.Parse(Console.ReadLine());
+                            int c = int.Parse(Console.ReadLine());
+                            try
+                            {
+                                AddItem(a, b, c);
+                            }
+                            catch (Exception)
+                            {
+
+                                throw;
+                            }
                             break;
                         }
                     case "2":
@@ -235,13 +226,34 @@ namespace Project
                     case "1":
                         {
                             //Add a new item to the Record.
-                            AddItem();
+                            //is not validated
+                            string a = Console.ReadLine();
+                            float b = float.Parse(Console.ReadLine());
+                            int c = int.Parse(Console.ReadLine());
+                            try
+                            {
+                                AddItem(a,b,c);
+                            }
+                            catch (Exception)
+                            {
+                                //try again
+                                throw;
+                            }
                             break;
                         }
                     default:
                         {
                             //Other, therefore edit the selected item.
-                            EditItem(saleItems[Convert.ToInt32(userInput) - 2], Convert.ToInt32(userInput) - 2);
+                            try
+                            {
+                                EditItem(saleItems[Convert.ToInt32(userInput) - 2], Convert.ToInt32(userInput) - 2);
+                            }
+                            catch (Exception)
+                            {
+                                //try again
+                                throw;
+                            }
+                            
                             break;
                         }
                 }
@@ -253,30 +265,52 @@ namespace Project
         }
 
         //Add invidvidual items to the sales record.
-        private void AddItem()
+        private void AddItem(string name, float price, int qty)
         {
-            //Take in user input for name and perform validation.
-            string name = ValidateName();
-            //Take in user input for price and perform validation.
-            float price = ValidatePrice();
-            //Take in user input for quantity and perform validation.
-            int quantity = ValidateQuantity();
-            //Add the item to the list.
-            saleItems.Add(new Item(name, price, quantity));
+            if (ValidateBarcode(name) && ValidatePrice(price) && ValidateQuantity(qty))
+            {
+                saleItems.Add(new Item(name, price, qty));
+            }
+            else
+            {
+                throw new Exception("Name or Price or Qty is not valid");
+            }
+            
         }
 
         private void EditItem(Item item, int index)
         {
-            Console.WriteLine("Item Name: " + item.getProductName());
+            bool isvalid = false;
+            Console.WriteLine("Item Barcode: " + item.getProductName());
 
             Console.WriteLine("Item Price: " + item.getProductPrice());
-            //Take in user input for price and perform validation.
-            float price = ValidatePrice();
-            Console.WriteLine("Item Quantity: " + item.getProductQuantity());
-            //Take in user input for quantity and perform validation.
-            int quantity = ValidateQuantity();
 
-            saleItems[index] = new Item(item.getProductName(), price, quantity);
+            Console.WriteLine("Item Quantity: " + item.getProductQuantity());
+            //Take in user input for price and perform validation.
+
+            float price = float.Parse(Console.ReadLine());
+            if (ValidatePrice(price))
+            {
+                isvalid = true;
+            }
+            else
+            {
+                throw new Exception("Price Not valid");
+            }
+
+            int qty = int.Parse(Console.ReadLine());
+            if (ValidateQuantity(qty))
+            {
+                isvalid = true;
+            }
+            else
+            {
+                throw new Exception("qty Not valid");
+            }
+            if (isvalid)
+            {
+                saleItems[index] = new Item(item.getProductName(), price, qty);
+            }
         }     
     }
 }

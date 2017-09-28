@@ -9,6 +9,7 @@ namespace Project
 {
     class SystemManager
     {
+        Stocks stock = new Stocks();
         SalesRecord ActiveRecord;
         Report ActiveReport;
         Boolean Loop;
@@ -78,19 +79,19 @@ namespace Project
         private void AddRecord()
         {
             //Declare a new Sales Record object and set it's mode to 'Add'
-            ActiveRecord = new SalesRecord(0);
+            ActiveRecord = new SalesRecord(0, stock);
         }
 
         private void GetRecord()
         {
             //Declare a new Sales Record object and set it's mode to 'Read'
-            ActiveRecord = new SalesRecord(1);     
+            ActiveRecord = new SalesRecord(1, stock);     
         }
 
         private void EditRecord()
         {
             //Declare a new Sales Record object and set it's mode to 'Edit'
-            ActiveRecord = new SalesRecord(2);
+            ActiveRecord = new SalesRecord(2, stock);
         }
 
         private void MonthlyReport()
