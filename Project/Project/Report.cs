@@ -15,6 +15,7 @@ namespace Project
         List<string> fileEntries; 
         List<Item> saleItems;
         DateTime saleTime;
+        Stocks itemstock;
 
         public DateTime getsaleTime()
         {
@@ -26,8 +27,9 @@ namespace Project
             return saleItems;
         }
 
-        public Report(int Mode)
+        public Report(int Mode, Stocks stock)
         {
+            itemstock = stock;
             saleItems = new List<Item>();
 
             if (Mode == (int)Modes.Monthly)
@@ -76,8 +78,12 @@ namespace Project
                     Console.WriteLine("-------------------------");
                     Console.WriteLine(csvManager.getDateFromPath(path));
                     Console.WriteLine("-------------------------");
-                    Console.Write("Product Name: ");
+                    Console.Write("Product ID: ");
                     Console.WriteLine(file.getProductName());
+                    Console.Write("Product Name: ");
+                    Console.WriteLine(itemstock.getNameofitemID(file.getProductName()));
+                    Console.Write("Product Group: ");
+                    Console.WriteLine(itemstock.getgroupofitemID(file.getProductName()));
                     Console.Write("Product Price: ");
                     Console.WriteLine(file.getProductPrice());
                     Console.Write("Product Quantity: ");

@@ -46,7 +46,7 @@ namespace Project
             }
             return groups;
         }
-        public List<String> getitemsnamesofgroup(string group)
+        public List<String> getitemsIDofgroup(string group)
         {
             List<String> items = new List<String>();
             //get all unique groups
@@ -73,7 +73,20 @@ namespace Project
             }
             return group;
         }
-
+        public String getNameofitemID(string ID)
+        {
+            String group = "";
+            //get all unique groups
+            foreach (string[] str in itemlist)
+            {
+                if (str[0] == ID)
+                {
+                    group = str[1];
+                    break;
+                }
+            }
+            return group;
+        }
         public enum fields
         {
             barcode,

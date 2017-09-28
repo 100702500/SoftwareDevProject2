@@ -97,12 +97,12 @@ namespace Project
         private void MonthlyReport()
         {
             //Declare a new Report and set it's mode to monthly.
-            ActiveReport = new Report(0);
+            ActiveReport = new Report(0, stock);
         }
 
         private void DailyReport()
         {
-            ActiveReport = new Report(2);
+            ActiveReport = new Report(2, stock);
         }
     }
 }

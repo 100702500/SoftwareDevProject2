@@ -16,6 +16,7 @@ namespace Project
         DateTime saleTime;
         float saleTotal;
         Stocks itemstock;
+        bool tryagain;
 
         Boolean Loop;
         string userInput;
@@ -154,18 +155,27 @@ namespace Project
                 {
                     case "1":
                         {
-                            //If User selected Add Item, begin the method.
-                            string a = Console.ReadLine();
-                            float b = float.Parse(Console.ReadLine());
-                            int c = int.Parse(Console.ReadLine());
-                            try
+                            tryagain = true;
+                            while (tryagain)
                             {
-                                AddItem(a, b, c);
-                            }
-                            catch (Exception)
-                            {
-
-                                throw;
+                                //If User selected Add Item, begin the method.
+                                //-This shouldall be validated before add item and remove validation from add item.
+                                Console.Write("Product ID: ");
+                                string a = Console.ReadLine();
+                                Console.Write("Product Price: ");
+                                float b = float.Parse(Console.ReadLine());
+                                Console.Write("Product Qty: ");
+                                int c = int.Parse(Console.ReadLine());
+                                try
+                                {
+                                    AddItem(a, b, c);
+                                    tryagain = false;
+                                }
+                                catch (Exception)
+                                {
+                                    tryagain = true;
+                                }
+                                
                             }
                             break;
                         }
@@ -225,19 +235,24 @@ namespace Project
                         }
                     case "1":
                         {
-                            //Add a new item to the Record.
-                            //is not validated
-                            string a = Console.ReadLine();
-                            float b = float.Parse(Console.ReadLine());
-                            int c = int.Parse(Console.ReadLine());
-                            try
+                            tryagain = true;
+                            while (tryagain)
                             {
-                                AddItem(a,b,c);
-                            }
-                            catch (Exception)
-                            {
-                                //try again
-                                throw;
+                                //Add a new item to the Record.
+                                //is not validated
+                                string a = Console.ReadLine();
+                                float b = float.Parse(Console.ReadLine());
+                                int c = int.Parse(Console.ReadLine());
+                                try
+                                {
+                                    AddItem(a, b, c);
+                                    tryagain = false;
+                                }
+                                catch (Exception)
+                                {
+                                    //try again
+                                    tryagain = true;
+                                }
                             }
                             break;
                         }
@@ -287,25 +302,35 @@ namespace Project
 
             Console.WriteLine("Item Quantity: " + item.getProductQuantity());
             //Take in user input for price and perform validation.
-
-            float price = float.Parse(Console.ReadLine());
-            if (ValidatePrice(price))
+            tryagain = true;
+            float price = 0;
+            while (tryagain)
             {
-                isvalid = true;
+                price = float.Parse(Console.ReadLine());
+                if (ValidatePrice(price))
+                {
+                    isvalid = true;
+                    tryagain = false;
+                }
+                else
+                {
+                    throw new Exception("Price Not valid");
+                }
             }
-            else
+            tryagain = true;
+            int qty = 0;
+            while (tryagain)
             {
-                throw new Exception("Price Not valid");
-            }
-
-            int qty = int.Parse(Console.ReadLine());
-            if (ValidateQuantity(qty))
-            {
-                isvalid = true;
-            }
-            else
-            {
-                throw new Exception("qty Not valid");
+                qty = int.Parse(Console.ReadLine());
+                if (ValidateQuantity(qty))
+                {
+                    isvalid = true;
+                    tryagain = false;
+                }
+                else
+                {
+                    throw new Exception("qty Not valid");
+                }
             }
             if (isvalid)
             {
