@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btn_search = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -38,10 +37,11 @@
             this.txtbox_date2 = new System.Windows.Forms.TextBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.btn_back = new System.Windows.Forms.Button();
             this.txtbox_date1 = new System.Windows.Forms.TextBox();
             this.btn_exit = new System.Windows.Forms.Button();
+            this.btn_Select = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_search
@@ -52,20 +52,12 @@
             this.btn_search.TabIndex = 14;
             this.btn_search.Text = "Search";
             this.btn_search.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(379, 158);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(167, 13);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "(Double-click on a content to edit)";
+            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(298, 145);
+            this.label4.Location = new System.Drawing.Point(310, 145);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 13);
             this.label4.TabIndex = 9;
@@ -118,27 +110,18 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(301, 174);
+            this.listBox2.Location = new System.Drawing.Point(313, 174);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(245, 277);
+            this.listBox2.Size = new System.Drawing.Size(244, 277);
             this.listBox2.TabIndex = 4;
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(22, 174);
+            this.listBox1.Location = new System.Drawing.Point(12, 174);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(245, 277);
+            this.listBox1.Size = new System.Drawing.Size(241, 277);
             this.listBox1.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(273, 300);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = ">> ";
             // 
             // btn_back
             // 
@@ -168,15 +151,33 @@
             this.btn_exit.UseVisualStyleBackColor = true;
             this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
+            // btn_Select
+            // 
+            this.btn_Select.Location = new System.Drawing.Point(259, 263);
+            this.btn_Select.Name = "btn_Select";
+            this.btn_Select.Size = new System.Drawing.Size(48, 23);
+            this.btn_Select.TabIndex = 17;
+            this.btn_Select.Text = "Select";
+            this.btn_Select.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(273, 300);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = ">> ";
+            // 
             // Form_Display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 623);
+            this.Controls.Add(this.btn_Select);
             this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.btn_back);
             this.Controls.Add(this.btn_search);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -199,7 +200,6 @@
         #endregion
 
         private System.Windows.Forms.Button btn_search;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
@@ -208,9 +208,10 @@
         private System.Windows.Forms.TextBox txtbox_date2;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.TextBox txtbox_date1;
         private System.Windows.Forms.Button btn_exit;
+        private System.Windows.Forms.Button btn_Select;
+        private System.Windows.Forms.Label label2;
     }
 }

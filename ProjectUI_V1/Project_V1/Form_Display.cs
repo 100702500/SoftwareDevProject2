@@ -7,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+// -- Testing new coode ---
+using System.Text.RegularExpressions;
+using System.IO;
+
 
 namespace Project_V1
 {
@@ -18,6 +22,73 @@ namespace Project_V1
         }
 
 
+        // --- Testing new code ---
+        List<Item> saleItems;
+        DateTime saleTime;
+        float saleTotal;
+
+        public List<Item> getsaleItems()
+        {
+            return saleItems;
+        }
+
+        public DateTime getsaleTime()
+        {
+            return saleTime;
+        }
+
+        private void ReadRecord()
+        {
+            string path = csvManager.selectFile();
+            saleItems = csvManager.readSingleFile(path);
+            FileNameToDate(path);
+            PrintRecord();
+        }
+
+        private void PrintRecord()
+        {
+            saleTotal = 0;
+            foreach (Item element in saleItems)
+            {
+                saleTotal += element.getTotalCost();
+            }
+
+            listBox2.Items.Add(saleTime);
+            listBox2.Items.Add("----------");
+            foreach (Item element in saleItems)
+            {
+                listBox2.Items.Add("Product Name: ");
+                listBox2.Items.Add(element.getProductName());
+                listBox2.Items.Add("Product Price: ");
+                listBox2.Items.Add(element.getProductPrice());
+                listBox2.Items.Add("Product Quantity: ");
+                listBox2.Items.Add(element.getProductQuantity());
+                listBox2.Items.Add("Product Total: ");
+                listBox2.Items.Add(element.getProductQuantity() * element.getProductPrice());
+                listBox2.Items.Add("-------------------------");
+            }
+
+            listBox2.Items.Add("Sale Total: ");
+            listBox2.Items.Add(saleTotal);
+            listBox2.Items.Add("-------------------------");
+
+ 
+        }
+
+        private void FileNameToDate(string path)
+        {
+            string date = Path.GetFileName(path);
+            date = date.Replace("-", "/");
+            date = date.Replace("_", ":");
+            date = date.Replace(".csv", "");
+            saleTime = Convert.ToDateTime(date);
+        }
+
+        //--- End Testing new code ---
+
+
+
+        //--- BUTTON FUNCTIONS ---
         private void Form_Display_Load(object sender, EventArgs e)
         {
 
@@ -36,5 +107,16 @@ namespace Project_V1
             this.Close();
         }
 
+        private void btn_search_Click(object sender, EventArgs e)
+        {   
+            
+            listBox2.Items.Clear();
+            string path = csvManager.selectFile();
+            saleItems = csvManager.readSingleFile(path);
+            FileNameToDate(path);
+            PrintRecord();
+
+        }
+        //--- END OF BUTTON FUNCTIONS ---
     }
 }

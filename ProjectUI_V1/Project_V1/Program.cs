@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Project_V1
 {
-    static class Program
+     static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -18,5 +18,8 @@ namespace Project_V1
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form_MainMenu());
         }
+
+
+
     }
 }
