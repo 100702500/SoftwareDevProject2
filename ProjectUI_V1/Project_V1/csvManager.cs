@@ -120,6 +120,60 @@ namespace Project_V1
             //Return all the collected files.
             return csvEntries;
         }
+        public static List<string> selectSetOfFiles(string year, string month)
+        {
+            string path = folderpathdate(year, month);
+
+            string[] fileEntries = Directory.GetFiles(path);
+            List<string> csvEntries = verifyCSV(fileEntries);
+
+            //Return all the collected files.
+            return csvEntries;
+        }
+
+
+
+        /*
+        /// <summary>
+        /// Tests
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="locations"></param>
+        /// <returns></returns>
+        public static List<string> doodah(string condition, List<string> locations)
+        {
+            string[] test = new string[locations.Count];
+
+            int count = 0;
+            //this gets the date and disregards the time
+            foreach (string filename in locations)
+            {
+                test[count] = getDateFromPath(filename);
+                count++;
+            }
+            count = 0;
+
+            List<string> pathresults = new List<string>();
+            //if the date is the same as the required date get its path
+            //TODO: seperate into dd mm yyyy
+            foreach (string date in test)
+            {
+                if (date == condition)
+                {
+                    pathresults.Add(locations[count]);
+                }
+                count++;
+            }
+            return pathresults;
+        }
+        */
+
+
+
+
+
+
+
 
         public static List<string> selectFilesByDate(string condition, List<string> locations)
         {
@@ -223,11 +277,30 @@ namespace Project_V1
             return saleItems;
         }
 
-  
 
-    // --- REQUIRES UPDATE: [FORM_DISPLAY] MAYB BE USED ---  *** TESTING ***
-   //Writes a CSV file to the current year and month folder.
-   public static void writeSalesRecord(Form_Display input)
+        //Receives a set of path locations and reads their content into saleItems and returns it.
+        public static List<string> condensestring(List<String> allstring)
+        {
+           
+            List<string> uniquestring = new List<string>();
+            uniquestring.Add("0");
+            foreach (string i in allstring)
+            {
+                if (!uniquestring.Contains(i))
+                {
+                    uniquestring.Add(i);
+                }
+            }
+            uniquestring.RemoveAt(0);
+            return uniquestring;
+        }
+
+
+
+
+        // --- REQUIRES UPDATE: [FORM_DISPLAY] MAYB BE USED ---  *** TESTING ***
+        //Writes a CSV file to the current year and month folder.
+        public static void writeSalesRecord(Form_Display input)
    {
        //Manage the path where the CSV files should be saved to.
        string createdYear = input.getsaleTime().ToString("yyyy");

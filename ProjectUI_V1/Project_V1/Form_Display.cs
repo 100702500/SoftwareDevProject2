@@ -37,11 +37,11 @@ namespace Project_V1
             return saleTime;
         }
 
-        private void ReadRecord()
+        private void ReadRecord(string path)
         {
-            string path = csvManager.selectFile();
-            saleItems = csvManager.readSingleFile(path);
-            FileNameToDate(path);
+
+            List<string> files = csvManager.selectFilesByDate(path, csvManager.selectSetOfFiles());
+            saleItems = csvManager.readSetOfFiles(files);
             PrintRecord();
         }
 
@@ -110,12 +110,26 @@ namespace Project_V1
         private void btn_search_Click(object sender, EventArgs e)
         {   
             
-            listBox2.Items.Clear();
-            string path = csvManager.selectFile();
-            saleItems = csvManager.readSingleFile(path);
-            FileNameToDate(path);
-            PrintRecord();
+            listBox1.Items.Clear();
+            List<string> paths = csvManager.selectSetOfFiles();
+            List<string> dates = new List<string>();
+            foreach (string p in paths)
+            {
+                dates.Add(csvManager.getDateFromPath(p).Split(' ')[0]);
+            }
+            dates = csvManager.condensestring(dates);
+            foreach (string p in dates)
+            {
+                listBox1.Items.Add(p);
+                //listBox1.Items.Add(p);
+            }
+           
+        }
 
+        private void btn_Select_Click(object sender, EventArgs e)
+        {
+            listBox2.Items.Clear();
+            ReadRecord(listBox1.SelectedItem.ToString());
         }
         //--- END OF BUTTON FUNCTIONS ---
     }
