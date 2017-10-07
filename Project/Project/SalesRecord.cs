@@ -244,8 +244,11 @@ namespace Project
                             {
                                 //Add a new item to the Record.
                                 //is not validated
+                                Console.Write("Product ID: ");
                                 string a = Console.ReadLine();
+                                Console.Write("Product Price: ");
                                 string b = Console.ReadLine();
+                                Console.Write("Product Qty: ");
                                 int c = int.Parse(Console.ReadLine());
                                 try
                                 {
@@ -308,11 +311,12 @@ namespace Project
             Console.WriteLine("Item Quantity: " + item.getProductQuantity());
             //Take in user input for price and perform validation.
             tryagain = true;
-            string price = "";
+            string b = "";
             while (tryagain)
             {
-                string b = Console.ReadLine();
-                if (ValidatePrice(price))
+                Console.Write("Product Price: ");
+                b = Console.ReadLine();
+                if (ValidatePrice(b))
                 {
                     isvalid = true;
                     tryagain = false;
@@ -323,11 +327,12 @@ namespace Project
                 }
             }
             tryagain = true;
-            int qty = 0;
+            int c = 0;
             while (tryagain)
             {
-                qty = int.Parse(Console.ReadLine());
-                if (ValidateQuantity(qty))
+                Console.Write("Product Qty: ");
+                c = int.Parse(Console.ReadLine());
+                if (ValidateQuantity(c))
                 {
                     isvalid = true;
                     tryagain = false;
@@ -339,8 +344,8 @@ namespace Project
             }
             if (isvalid)
             {
-                float parsed = float.Parse(price);
-                saleItems[index] = new Item(item.getProductName(), parsed, qty);
+                float parsed = float.Parse(b);
+                saleItems[index] = new Item(item.getProductName(), parsed, c);
             }
         }     
     }
