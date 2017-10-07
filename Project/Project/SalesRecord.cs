@@ -68,8 +68,12 @@ namespace Project
             Console.WriteLine("-------------------------");
             foreach (Item element in saleItems)
             {
-                Console.Write("Product Name: ");
+                Console.Write("Product ID: ");
                 Console.WriteLine(element.getProductName());
+                Console.Write("Product Name: ");
+                Console.WriteLine(itemstock.getNameofitemID(element.getProductName()));
+                Console.Write("Product Group: ");
+                Console.WriteLine(itemstock.getgroupofitemID(element.getProductName()));
                 Console.Write("Product Price: ");
                 Console.WriteLine(element.getProductPrice());
                 Console.Write("Product Quantity: ");
@@ -114,7 +118,7 @@ namespace Project
 
         //Regex to ensure max 3 digits. max 2 digits float format.
         
-        private bool ValidatePrice(float price)
+        private bool ValidatePrice(string price)
         {
             var regexItem = new Regex("^[0-9]{1,3}.[0-9]{1,2}$");
             bool isValid = false;
@@ -163,7 +167,7 @@ namespace Project
                                 Console.Write("Product ID: ");
                                 string a = Console.ReadLine();
                                 Console.Write("Product Price: ");
-                                float b = float.Parse(Console.ReadLine());
+                                string b = Console.ReadLine();
                                 Console.Write("Product Qty: ");
                                 int c = int.Parse(Console.ReadLine());
                                 try
@@ -241,7 +245,7 @@ namespace Project
                                 //Add a new item to the Record.
                                 //is not validated
                                 string a = Console.ReadLine();
-                                float b = float.Parse(Console.ReadLine());
+                                string b = Console.ReadLine();
                                 int c = int.Parse(Console.ReadLine());
                                 try
                                 {
@@ -280,11 +284,12 @@ namespace Project
         }
 
         //Add invidvidual items to the sales record.
-        private void AddItem(string name, float price, int qty)
+        private void AddItem(string name, string price, int qty)
         {
             if (ValidateBarcode(name) && ValidatePrice(price) && ValidateQuantity(qty))
             {
-                saleItems.Add(new Item(name, price, qty));
+                float parsed = float.Parse(price);
+                saleItems.Add(new Item(name, parsed, qty));
             }
             else
             {
@@ -303,10 +308,10 @@ namespace Project
             Console.WriteLine("Item Quantity: " + item.getProductQuantity());
             //Take in user input for price and perform validation.
             tryagain = true;
-            float price = 0;
+            string price = "";
             while (tryagain)
             {
-                price = float.Parse(Console.ReadLine());
+                string b = Console.ReadLine();
                 if (ValidatePrice(price))
                 {
                     isvalid = true;
@@ -334,7 +339,8 @@ namespace Project
             }
             if (isvalid)
             {
-                saleItems[index] = new Item(item.getProductName(), price, qty);
+                float parsed = float.Parse(price);
+                saleItems[index] = new Item(item.getProductName(), parsed, qty);
             }
         }     
     }
