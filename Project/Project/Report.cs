@@ -40,7 +40,7 @@ namespace Project
             }
             if (Mode == (int)Modes.Weekly)
             {
-
+                WeeklyReport();
             }
             if (Mode == (int)Modes.Daily)
             {
@@ -51,6 +51,16 @@ namespace Project
                 MonthlyEstimate();
             }
         }
+        private void WeeklyReport()
+        {
+
+            fileEntries = csvManager.selectWeekOfFiles();
+            saleItems = csvManager.readSetOfFiles(fileEntries);
+
+            saleTime = DateTime.Now;
+            csvManager.writeSalesReport(this, 1); 
+
+        }
 
         private void MonthlyReport()
         {
@@ -59,7 +69,7 @@ namespace Project
             saleItems = csvManager.condenseitems(saleItems);
 
             saleTime = DateTime.Now;
-            csvManager.writeSalesReport(this);
+            csvManager.writeSalesReport(this, 0);
         }
 
         private void DailyReport()
@@ -125,7 +135,7 @@ namespace Project
             saleItems = predictedSales;
 
             saleTime = DateTime.Now;
-            csvManager.writeSalesReport(this);
+            csvManager.writeSalesReport(this, 0);
         }
 
         private int PerformEstimateMagic(int baseQuantity)
