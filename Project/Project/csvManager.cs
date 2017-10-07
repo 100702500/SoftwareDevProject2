@@ -72,6 +72,87 @@ namespace Project
             return csvEntries[Convert.ToInt32(userInput)];
         }
 
+        //Look for all files in the current month folder that are within the last 7 days or the closest monday, and returns them in a list.
+        public static List<string> selectWeekOfFiles()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            string currentYear = DateTime.Now.ToString("yyyy");
+            string currentMonth = DateTime.Now.ToString("MM");
+            path += "\\data\\" + currentYear + "\\" + currentMonth;
+            string[] fileEntries = Directory.GetFiles(path);
+            List<string> allFiles = new List<string>(); 
+
+            foreach (string d in fileEntries)
+            {
+                allFiles.Add(d);
+            }
+
+            int size = fileEntries.Length;
+            string date = "";
+            string dayOfTheMonth = "";
+        
+            DateTime myDate;
+         
+            bool MondayFound = false;
+            List<string> output = new List<string>();
+
+            for (int i = 0; i < size; i++)
+            {
+                if (!MondayFound)
+                {
+                    date = getDateFromPath(fileEntries[i]);
+                    date = SliceDate(date, " ");
+
+                    myDate = DateTime.ParseExact(date, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+                    dayOfTheMonth = getDateFromPath(fileEntries[i]);
+                    dayOfTheMonth = SliceDate(dayOfTheMonth, "-");
+                    int firstDayofWeek = Int32.Parse(dayOfTheMonth);
+
+                    string dateNow = DateTime.Now.ToString();
+                    dateNow = SliceDate(dateNow, "/");
+                    int DayNow = Int32.Parse(dateNow);
+
+                    if (DayNow -firstDayofWeek < 7)
+                    { 
+                         if (myDate.DayOfWeek == DayOfWeek.Monday)
+                         {
+                            MondayFound = true;
+                         }
+                        else
+                        {
+                            output.Add(fileEntries[i]);
+                        }
+                    }
+                    else
+                    {
+                        break; 
+                    }
+                }
+                else
+                {
+                    List<string> mondayFiles = new List<string>();
+                    mondayFiles = selectFilesByDate(date, allFiles);
+                    foreach (string f in mondayFiles)
+                    {
+                        output.Add(f); 
+                    }
+                    break; 
+                }
+
+            }
+            
+            return output; 
+        }
+
+        public static string SliceDate (string date, string symbol)
+        {
+            int DayIndex = date.IndexOf(symbol);
+            if (DayIndex > 0)
+                date = date.Substring(0, DayIndex);
+            return date;
+        }
+
         //Retrieves all the files from the directory of the current year and month, then returns them.
         public static List<string> selectSetOfFiles()
         {
@@ -206,13 +287,20 @@ namespace Project
         }
 
         //Writes a CSV file to the Reports folder.
-        public static void writeSalesReport(Report input)
+        public static void writeSalesReport(Report input, int mode)
         {
             //Manage the path where the CSV files should be saved to.
             string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             string createdYear = input.getsaleTime().ToString("yyyy");
             string createdDate = input.getsaleTime().ToString("dd-MM-yyyy h_mm_ss tt");
-            path += "\\data\\" + createdYear + "\\Reports\\" + createdDate + ".csv";
+            if (mode == 0)
+            {
+                path += "\\data\\" + createdYear + "\\Reports\\" + createdDate + ".csv";
+            }
+            else if (mode == 1)
+            {
+                path += "\\data\\" + createdYear + "\\Reports\\Weekly\\" + createdDate + ".csv";
+            }
             Console.WriteLine("Saved at: " + path);
             //Create an array of an array of strings made of the records contents.
             int length = input.getsaleItems().Count + 1;

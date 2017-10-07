@@ -36,12 +36,22 @@ namespace Project
             }
             if (Mode == (int)Modes.Weekly)
             {
-
+                WeeklyReport();
             }
             if (Mode == (int)Modes.Daily)
             {
                 DailyReport();
             }
+        }
+        private void WeeklyReport()
+        {
+
+            fileEntries = csvManager.selectWeekOfFiles();
+            saleItems = csvManager.readSetOfFiles(fileEntries);
+
+            saleTime = DateTime.Now;
+            csvManager.writeSalesReport(this, 1); 
+
         }
 
         private void MonthlyReport()
@@ -50,7 +60,7 @@ namespace Project
             saleItems = csvManager.readSetOfFiles(fileEntries);
             
             saleTime = DateTime.Now;
-            csvManager.writeSalesReport(this);
+            csvManager.writeSalesReport(this, 0);
         }
 
         private void DailyReport()

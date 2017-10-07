@@ -31,7 +31,8 @@ namespace Project
                 Console.WriteLine("     3. Read Records at a Date");
                 Console.WriteLine("     4. Edit Record");
                 Console.WriteLine("     5. Monthly Report");
-                Console.WriteLine("     6. Quit");
+                Console.WriteLine("     6. Weekly Report");
+                Console.WriteLine("     7. Quit");
 
                 userInput = Console.ReadLine();
 
@@ -67,6 +68,11 @@ namespace Project
                         }
                     case "6":
                         {
+                            WeeklyReport();
+                            break;
+                        }
+                    case "7":
+                        {
                             //Break the loop and exit the program.
                             Loop = false;
                             break;
@@ -97,6 +103,11 @@ namespace Project
         {
             //Declare a new Report and set it's mode to monthly.
             ActiveReport = new Report(0);
+        }
+        private void WeeklyReport()
+        {
+            //Declare a new Report and set it's mode to meekly.
+            ActiveReport = new Report(1); 
         }
 
         private void DailyReport()
