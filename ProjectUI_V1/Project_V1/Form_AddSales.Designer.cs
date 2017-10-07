@@ -30,11 +30,9 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_cont = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.numbox_qty = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtbox_datetime = new System.Windows.Forms.TextBox();
             this.txtbox_price = new System.Windows.Forms.TextBox();
             this.txtbox_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,11 +45,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btn_cont);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.numbox_qty);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtbox_datetime);
             this.groupBox1.Controls.Add(this.txtbox_price);
             this.groupBox1.Controls.Add(this.txtbox_name);
             this.groupBox1.Controls.Add(this.label1);
@@ -71,15 +67,6 @@
             this.btn_cont.Text = "Save and Continue";
             this.btn_cont.UseVisualStyleBackColor = true;
             this.btn_cont.Click += new System.EventHandler(this.btn_cont_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(113, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Date and Time: ";
             // 
             // numbox_qty
             // 
@@ -105,14 +92,6 @@
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Qty:";
-            // 
-            // txtbox_datetime
-            // 
-            this.txtbox_datetime.Location = new System.Drawing.Point(225, 89);
-            this.txtbox_datetime.Name = "txtbox_datetime";
-            this.txtbox_datetime.Size = new System.Drawing.Size(167, 20);
-            this.txtbox_datetime.TabIndex = 1;
-            this.txtbox_datetime.TextChanged += new System.EventHandler(this.txtbox_datetime_TextChanged);
             // 
             // txtbox_price
             // 
@@ -180,10 +159,8 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_cont;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtbox_datetime;
         private System.Windows.Forms.TextBox txtbox_name;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtbox_price;

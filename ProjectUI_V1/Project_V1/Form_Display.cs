@@ -19,6 +19,8 @@ namespace Project_V1
         public Form_Display()
         {
             InitializeComponent();
+
+            IniMonthYearBox();
         }
 
 
@@ -26,6 +28,30 @@ namespace Project_V1
         List<Item> saleItems;
         DateTime saleTime;
         float saleTotal;
+
+        private void IniMonthYearBox()
+        {
+            
+            /*
+            comboBox1.Items.Add("1");
+            comboBox1.Items.Add("2");
+            comboBox1.Items.Add("3");
+            comboBox1.Items.Add("4");
+            comboBox1.Items.Add("5");
+            comboBox1.Items.Add("6");
+            comboBox1.Items.Add("7");
+            comboBox1.Items.Add("8");
+            comboBox1.Items.Add("9");
+            */
+            comboBox1.Items.Add("10");
+            /*
+            comboBox1.Items.Add("11");
+            comboBox1.Items.Add("12");
+            comboBox2.Items.Add("2016");
+            */
+            comboBox2.Items.Add("2017");
+
+        }
 
         public List<Item> getsaleItems()
         {
@@ -108,16 +134,25 @@ namespace Project_V1
         }
 
         private void btn_search_Click(object sender, EventArgs e)
-        {   
-            
+        {
+            String userMonth = comboBox1.SelectedItem.ToString();
+            String userYear = comboBox2.SelectedItem.ToString();
+
             listBox1.Items.Clear();
-            List<string> paths = csvManager.selectSetOfFiles();
+            lbl_search.Text = "( Month: " + userMonth + ", Year :" + userYear + " )";
+
+            List <string> paths = csvManager.selectSetOfFiles(userMonth, userYear);
             List<string> dates = new List<string>();
+
+            
             foreach (string p in paths)
             {
-                dates.Add(csvManager.getDateFromPath(p).Split(' ')[0]);
+                // dates.Add(csvManager.getDateFromPath(p).Split(' ')[0]);
+                dates.Add(csvManager.getDateFromPath(p));
             }
+            
             dates = csvManager.condensestring(dates);
+
             foreach (string p in dates)
             {
                 listBox1.Items.Add(p);
@@ -131,6 +166,12 @@ namespace Project_V1
             listBox2.Items.Clear();
             ReadRecord(listBox1.SelectedItem.ToString());
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //--- END OF BUTTON FUNCTIONS ---
     }
 }

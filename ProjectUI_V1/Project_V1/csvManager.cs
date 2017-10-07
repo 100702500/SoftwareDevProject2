@@ -120,7 +120,7 @@ namespace Project_V1
             //Return all the collected files.
             return csvEntries;
         }
-        public static List<string> selectSetOfFiles(string year, string month)
+        public static List<string> selectSetOfFiles( string month, string year)
         {
             string path = folderpathdate(year, month);
 

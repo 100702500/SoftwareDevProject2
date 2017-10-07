@@ -28,57 +28,84 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpbox_editside = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btn_delete = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.numbox_qty = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtbox_datetime = new System.Windows.Forms.TextBox();
             this.txtbox_price = new System.Windows.Forms.TextBox();
             this.txtbox_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_back = new System.Windows.Forms.Button();
             this.btn_exit = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.boxYear = new System.Windows.Forms.ComboBox();
+            this.boxMonth = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btn_Search = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btn_editsel = new System.Windows.Forms.Button();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.grpbox_list = new System.Windows.Forms.GroupBox();
+            this.btn_confirm = new System.Windows.Forms.Button();
+            this.lbl_status = new System.Windows.Forms.Label();
+            this.grpbox_editside.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numbox_qty)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.grpbox_list.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grpbox_editside
             // 
-            this.groupBox1.Controls.Add(this.btn_delete);
-            this.groupBox1.Controls.Add(this.btn_save);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.numbox_qty);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtbox_datetime);
-            this.groupBox1.Controls.Add(this.txtbox_price);
-            this.groupBox1.Controls.Add(this.txtbox_name);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(21, 34);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(532, 474);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Edit Sales Record:";
+            this.grpbox_editside.Controls.Add(this.label5);
+            this.grpbox_editside.Controls.Add(this.btn_delete);
+            this.grpbox_editside.Controls.Add(this.btn_save);
+            this.grpbox_editside.Controls.Add(this.label4);
+            this.grpbox_editside.Controls.Add(this.numbox_qty);
+            this.grpbox_editside.Controls.Add(this.label3);
+            this.grpbox_editside.Controls.Add(this.label2);
+            this.grpbox_editside.Controls.Add(this.txtbox_price);
+            this.grpbox_editside.Controls.Add(this.txtbox_name);
+            this.grpbox_editside.Controls.Add(this.label1);
+            this.grpbox_editside.Location = new System.Drawing.Point(21, 347);
+            this.grpbox_editside.Name = "grpbox_editside";
+            this.grpbox_editside.Size = new System.Drawing.Size(532, 176);
+            this.grpbox_editside.TabIndex = 7;
+            this.grpbox_editside.TabStop = false;
+            this.grpbox_editside.Text = "Edit Sales Record:";
+            this.grpbox_editside.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(125, 31);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "DD-MM-YYYY";
             // 
             // btn_delete
             // 
+            this.btn_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_delete.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btn_delete.Location = new System.Drawing.Point(116, 361);
+            this.btn_delete.Location = new System.Drawing.Point(377, 31);
             this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(276, 23);
+            this.btn_delete.Size = new System.Drawing.Size(111, 52);
             this.btn_delete.TabIndex = 1;
-            this.btn_delete.Text = "Delete Transaction";
+            this.btn_delete.Text = "Delete Item";
             this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(116, 296);
+            this.btn_save.Location = new System.Drawing.Point(377, 113);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(276, 23);
+            this.btn_save.Size = new System.Drawing.Size(111, 52);
             this.btn_save.TabIndex = 1;
             this.btn_save.Text = "Save Changes";
             this.btn_save.UseVisualStyleBackColor = true;
@@ -87,7 +114,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(113, 92);
+            this.label4.Location = new System.Drawing.Point(16, 31);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 13);
             this.label4.TabIndex = 3;
@@ -95,15 +122,15 @@
             // 
             // numbox_qty
             // 
-            this.numbox_qty.Location = new System.Drawing.Point(225, 172);
+            this.numbox_qty.Location = new System.Drawing.Point(128, 100);
             this.numbox_qty.Name = "numbox_qty";
-            this.numbox_qty.Size = new System.Drawing.Size(167, 20);
+            this.numbox_qty.Size = new System.Drawing.Size(129, 20);
             this.numbox_qty.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(162, 212);
+            this.label3.Location = new System.Drawing.Point(65, 133);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 0;
@@ -112,37 +139,30 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(170, 174);
+            this.label2.Location = new System.Drawing.Point(73, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Qty:";
             // 
-            // txtbox_datetime
-            // 
-            this.txtbox_datetime.Location = new System.Drawing.Point(225, 89);
-            this.txtbox_datetime.Name = "txtbox_datetime";
-            this.txtbox_datetime.Size = new System.Drawing.Size(167, 20);
-            this.txtbox_datetime.TabIndex = 1;
-            // 
             // txtbox_price
             // 
-            this.txtbox_price.Location = new System.Drawing.Point(225, 209);
+            this.txtbox_price.Location = new System.Drawing.Point(128, 130);
             this.txtbox_price.Name = "txtbox_price";
-            this.txtbox_price.Size = new System.Drawing.Size(167, 20);
+            this.txtbox_price.Size = new System.Drawing.Size(129, 20);
             this.txtbox_price.TabIndex = 1;
             // 
             // txtbox_name
             // 
-            this.txtbox_name.Location = new System.Drawing.Point(225, 135);
+            this.txtbox_name.Location = new System.Drawing.Point(128, 63);
             this.txtbox_name.Name = "txtbox_name";
-            this.txtbox_name.Size = new System.Drawing.Size(167, 20);
+            this.txtbox_name.Size = new System.Drawing.Size(129, 20);
             this.txtbox_name.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(135, 135);
+            this.label1.Location = new System.Drawing.Point(38, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 0;
@@ -168,38 +188,188 @@
             this.btn_exit.UseVisualStyleBackColor = true;
             this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btn_confirm);
+            this.groupBox2.Controls.Add(this.boxYear);
+            this.groupBox2.Controls.Add(this.boxMonth);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.btn_Search);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.listBox1);
+            this.groupBox2.Location = new System.Drawing.Point(21, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(532, 191);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Select Sales Record to Edit:";
+            // 
+            // boxYear
+            // 
+            this.boxYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.boxYear.FormattingEnabled = true;
+            this.boxYear.Location = new System.Drawing.Point(248, 19);
+            this.boxYear.Name = "boxYear";
+            this.boxYear.Size = new System.Drawing.Size(70, 21);
+            this.boxYear.TabIndex = 22;
+            // 
+            // boxMonth
+            // 
+            this.boxMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.boxMonth.FormattingEnabled = true;
+            this.boxMonth.Location = new System.Drawing.Point(147, 19);
+            this.boxMonth.Name = "boxMonth";
+            this.boxMonth.Size = new System.Drawing.Size(53, 21);
+            this.boxMonth.TabIndex = 23;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 13);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Search Based on: ";
+            // 
+            // btn_Search
+            // 
+            this.btn_Search.Location = new System.Drawing.Point(377, 19);
+            this.btn_Search.Name = "btn_Search";
+            this.btn_Search.Size = new System.Drawing.Size(111, 52);
+            this.btn_Search.TabIndex = 18;
+            this.btn_Search.Text = "Search";
+            this.btn_Search.UseVisualStyleBackColor = true;
+            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(108, 22);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Month:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(210, 22);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(32, 13);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "Year:";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(19, 56);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(299, 108);
+            this.listBox1.TabIndex = 11;
+            // 
+            // btn_editsel
+            // 
+            this.btn_editsel.Location = new System.Drawing.Point(377, 40);
+            this.btn_editsel.Name = "btn_editsel";
+            this.btn_editsel.Size = new System.Drawing.Size(111, 52);
+            this.btn_editsel.TabIndex = 18;
+            this.btn_editsel.Text = "Edit";
+            this.btn_editsel.UseVisualStyleBackColor = true;
+            this.btn_editsel.Click += new System.EventHandler(this.btn_editsel_Click);
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(19, 18);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(299, 108);
+            this.listBox2.TabIndex = 24;
+            // 
+            // grpbox_list
+            // 
+            this.grpbox_list.Controls.Add(this.listBox2);
+            this.grpbox_list.Controls.Add(this.btn_editsel);
+            this.grpbox_list.Location = new System.Drawing.Point(21, 209);
+            this.grpbox_list.Name = "grpbox_list";
+            this.grpbox_list.Size = new System.Drawing.Size(532, 132);
+            this.grpbox_list.TabIndex = 26;
+            this.grpbox_list.TabStop = false;
+            this.grpbox_list.Text = "List of Items: ";
+            this.grpbox_list.Visible = false;
+            // 
+            // btn_confirm
+            // 
+            this.btn_confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_confirm.Location = new System.Drawing.Point(377, 114);
+            this.btn_confirm.Name = "btn_confirm";
+            this.btn_confirm.Size = new System.Drawing.Size(111, 52);
+            this.btn_confirm.TabIndex = 24;
+            this.btn_confirm.Text = "Select and Continue";
+            this.btn_confirm.UseVisualStyleBackColor = true;
+            this.btn_confirm.Click += new System.EventHandler(this.btn_confirm_Click);
+            // 
+            // lbl_status
+            // 
+            this.lbl_status.AutoSize = true;
+            this.lbl_status.Location = new System.Drawing.Point(395, 526);
+            this.lbl_status.Name = "lbl_status";
+            this.lbl_status.Size = new System.Drawing.Size(55, 13);
+            this.lbl_status.TabIndex = 5;
+            this.lbl_status.Text = "[Status: - ]";
+            // 
             // Form_Edit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(575, 623);
+            this.Controls.Add(this.lbl_status);
+            this.Controls.Add(this.grpbox_list);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_exit);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpbox_editside);
             this.Controls.Add(this.btn_back);
             this.Name = "Form_Edit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_Edit";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpbox_editside.ResumeLayout(false);
+            this.grpbox_editside.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numbox_qty)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.grpbox_list.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpbox_editside;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numbox_qty;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtbox_datetime;
         private System.Windows.Forms.TextBox txtbox_price;
         private System.Windows.Forms.TextBox txtbox_name;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.Button btn_delete;
         private System.Windows.Forms.Button btn_exit;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btn_editsel;
+        private System.Windows.Forms.ComboBox boxYear;
+        private System.Windows.Forms.ComboBox boxMonth;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btn_Search;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.GroupBox grpbox_list;
+        private System.Windows.Forms.Button btn_confirm;
+        private System.Windows.Forms.Label lbl_status;
     }
 }

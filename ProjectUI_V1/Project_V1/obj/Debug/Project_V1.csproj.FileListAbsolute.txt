@@ -1,0 +1,60 @@
+c:\users\richmondkk\documents\visual studio 2015\Projects\Project_V1\Project_V1\bin\Debug\Project_V1.exe.config
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\bin\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\bin\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\obj\Debug\Project_V1.csprojResolveAssemblyReference.cache
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\obj\Debug\Project_V1.Form_MainMenu.resources
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\obj\Debug\Project_V1.Properties.Resources.resources
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\obj\Debug\Project_V1.csproj.GenerateResource.Cache
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\obj\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\obj\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\obj\Debug\Project_V1.Form_AddSales.resources
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\obj\Debug\Project_V1.Form_Display.resources
+C:\Users\Richmondkk\Documents\Visual Studio 2015\Projects\Project_V1\Project_V1\obj\Debug\Project_V1.Form_Edit.resources
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\bin\Debug\Project_V1.exe.config
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\obj\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\obj\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\obj\Debug\Project_V1.csprojResolveAssemblyReference.cache
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\obj\Debug\Project_V1.Form_AddSales.resources
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\obj\Debug\Project_V1.Form_Display.resources
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\obj\Debug\Project_V1.Form_Edit.resources
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\obj\Debug\Project_V1.Form_MainMenu.resources
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\obj\Debug\Project_V1.Properties.Resources.resources
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\obj\Debug\Project_V1.csproj.GenerateResource.Cache
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\bin\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\UI_Implementation\Project_V1\Project_V1\bin\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.exe.config
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\bin\Debug\Project_V1.exe.config
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\obj\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\obj\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\obj\Debug\Project_V1.csprojResolveAssemblyReference.cache
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\obj\Debug\Project_V1.Form_AddSales.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\obj\Debug\Project_V1.Form_Display.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\obj\Debug\Project_V1.Form_Edit.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\obj\Debug\Project_V1.Form_MainMenu.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\obj\Debug\Project_V1.Properties.Resources.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\obj\Debug\Project_V1.csproj.GenerateResource.Cache
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\bin\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\Project_V1\bin\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\bin\Debug\Project_V1.exe.config
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\obj\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\obj\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\bin\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\bin\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\obj\Debug\Project_V1.csprojResolveAssemblyReference.cache
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\obj\Debug\Project_V1.Form_AddSales.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\obj\Debug\Project_V1.Form_Display.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\obj\Debug\Project_V1.Form_Edit.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\obj\Debug\Project_V1.Form_MainMenu.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\obj\Debug\Project_V1.Properties.Resources.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI - Copy\Project_V1\obj\Debug\Project_V1.csproj.GenerateResource.Cache
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.csprojResolveAssemblyReference.cache
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_AddSales.resources
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_Display.resources
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_Edit.resources
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_MainMenu.resources
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Properties.Resources.resources
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.csproj.GenerateResource.Cache
