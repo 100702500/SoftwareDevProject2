@@ -8,7 +8,7 @@ namespace Project
 {
     public class Item
     {
-        string productName;
+        string productName;// is a barcode
         float productPrice;
         int productQuantity;
 
