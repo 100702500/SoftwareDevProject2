@@ -33,6 +33,7 @@ namespace Project
                 Console.WriteLine("     4. Edit Record");
                 Console.WriteLine("     5. Monthly Report");
                 Console.WriteLine("     6. Quit");
+                Console.WriteLine("     7. Monthly Estimate");
 
                 userInput = Console.ReadLine();
 
@@ -72,6 +73,12 @@ namespace Project
                             Loop = false;
                             break;
                         }
+                    case "7":
+                        {
+                            //Break the loop and exit the program.
+                            MonthlyEstimateReport();
+                            break;
+                        }
                 }
             }
         }
@@ -103,6 +110,11 @@ namespace Project
         private void DailyReport()
         {
             ActiveReport = new Report(2, stock);
+        }
+
+        private void MonthlyEstimateReport()
+        {
+            ActiveReport = new Report(3, stock);
         }
     }
 }
