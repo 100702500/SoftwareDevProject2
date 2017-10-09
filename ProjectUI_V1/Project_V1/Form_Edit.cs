@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Project_V1
 {
@@ -19,6 +21,15 @@ namespace Project_V1
             IniMonthYearBox();
         }
 
+        
+        List<Item> saleItems;
+        DateTime saleTime;
+        float saleTotal;
+
+
+
+
+        // Start of Button Events 
         private void btn_back_Click(object sender, EventArgs e)
         {
             Form_MainMenu formMain = new Form_MainMenu();
@@ -34,42 +45,86 @@ namespace Project_V1
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            /*
-            string edtDateTime = txtbox_datetime.Text;
-            string edtItemName = txtbox_name.Text;
-            int edtQty = Convert.ToInt32(numbox_qty.Value);
-            Decimal edtPrice = Convert.ToDecimal(txtbox_price.Text);
 
-            MessageBox.Show(edtDateTime + " " + edtItemName + " "
-                + edtQty.ToString() + " " + edtPrice.ToString());
-                
-             */
+            grpbox_edit.Visible = false;
+            grpbox_list.Visible = true;
+         
+            EditItem(saleItems[Convert.ToInt32(listBox2.SelectedIndex)], Convert.ToInt32(listBox2.SelectedIndex));
 
         }
 
         private void btn_Search_Click(object sender, EventArgs e)
         {
-            grpbox_editside.Visible = false;
+            btn_confirm.Visible = true;
+            grpbox_edit.Visible = false;
 
             String userMonth = boxMonth.SelectedItem.ToString();
             String userYear = boxYear.SelectedItem.ToString();
 
             listBox1.Items.Clear();
-        
+            List<string> paths = csvManager.selectSetOfFiles(userMonth, userYear);
+            List<string> dates = new List<string>();
+
+            foreach (string p in paths)
+            {
+                dates.Add(csvManager.getDateFromPath(p).Split(' ')[0]);
+            }
+
+            dates = csvManager.condensestring(dates);
+
+            foreach (string p in dates)
+            {
+                listBox1.Items.Add(p);
+            }
 
         }
 
         private void btn_editsel_Click(object sender, EventArgs e)
         {
-            grpbox_editside.Visible = true;
+            grpbox_edit.Visible = true;
+
+            lbl_date.Text = listBox1.SelectedItem.ToString();
+            lbl_name.Text = listBox2.SelectedItem.ToString();
+
         }
 
-
-
-
-        //Testing New Codes: vvv 
-        //-------------------------
         
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            grpbox_edit.Visible = false;
+            grpbox_list.Visible = true;
+
+
+        }
+
+        private void btn_confirm_Click(object sender, EventArgs e)
+        {
+            grpbox_list.Visible = true;
+            listBox2.Items.Clear();
+
+            ListProdName(listBox1.SelectedItem.ToString());
+            lbl_listdate.Text = listBox1.SelectedItem.ToString();
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            grpbox_edit.Visible = true;
+
+        }
+        private void grpbox_list_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        // End of Button Event
+
+
+
+        //START OF NEW CODES:
         // List combobox to Month (1-12) & Year(2016-2017) 
         private void IniMonthYearBox()
         {
@@ -95,14 +150,63 @@ namespace Project_V1
 
         }
 
-        private void btn_delete_Click(object sender, EventArgs e)
+        public List<Item> getsaleItems()
         {
+            return saleItems;
+        }
+
+        public DateTime getsaleTime()
+        {
+            return saleTime;
+        }
+
+
+
+        private void ListProdName(string path)
+        {
+
+            List<string> files = csvManager.selectFilesByDate(path, csvManager.selectSetOfFiles());
+            saleItems = csvManager.readSetOfFiles(files);
+            printlistofname();
+        }
+
+
+        private void FileNameToDate(string path)
+        {
+            string date = Path.GetFileName(path);
+            date = date.Replace("-", "/");
+            date = date.Replace("_", ":");
+            date = date.Replace(".csv", "");
+            saleTime = Convert.ToDateTime(date);
+        }
+        
+
+        private void printlistofname()
+        {
+            int count = 1;
+
+            foreach (Item element in saleItems)
+            {
+                listBox2.Items.Add(element.getProductName());
+                count++;
+            }
+        }
+
+        private void EditItem(Item item, int index)
+        {
+
+               
+         string edtItemName = item.getProductName();
+         int edtQty = Convert.ToInt32(numbox_qty.Value);
+         float edtPrice = float.Parse(txtbox_price.Text);
+
+         MessageBox.Show( "UPDATED: Item Name: " + edtItemName + ", Qty: "
+             + edtQty.ToString() + ", Price:  " + edtPrice.ToString());
+
+        saleItems[index] = new Item(edtItemName, edtPrice, edtQty);
 
         }
 
-        private void btn_confirm_Click(object sender, EventArgs e)
-        {
-            grpbox_list.Visible = true;
-        }
+ 
     }
 }

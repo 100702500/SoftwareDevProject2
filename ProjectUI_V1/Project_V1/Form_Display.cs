@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-// -- Testing new coode ---
+
 using System.Text.RegularExpressions;
 using System.IO;
 
@@ -23,8 +23,7 @@ namespace Project_V1
             IniMonthYearBox();
         }
 
-
-        // --- Testing new code ---
+        
         List<Item> saleItems;
         DateTime saleTime;
         float saleTotal;
@@ -109,8 +108,7 @@ namespace Project_V1
             date = date.Replace(".csv", "");
             saleTime = Convert.ToDateTime(date);
         }
-
-        //--- End Testing new code ---
+        
 
 
 
@@ -147,8 +145,7 @@ namespace Project_V1
             
             foreach (string p in paths)
             {
-                // dates.Add(csvManager.getDateFromPath(p).Split(' ')[0]);
-                dates.Add(csvManager.getDateFromPath(p));
+                dates.Add(csvManager.getDateFromPath(p).Split(' ')[0]);
             }
             
             dates = csvManager.condensestring(dates);
@@ -156,7 +153,6 @@ namespace Project_V1
             foreach (string p in dates)
             {
                 listBox1.Items.Add(p);
-                //listBox1.Items.Add(p);
             }
            
         }

@@ -120,7 +120,7 @@ namespace Project_V1
             //Return all the collected files.
             return csvEntries;
         }
-        public static List<string> selectSetOfFiles(string year, string month)
+        public static List<string> selectSetOfFiles( string month, string year)
         {
             string path = folderpathdate(year, month);
 
@@ -294,36 +294,9 @@ namespace Project_V1
             uniquestring.RemoveAt(0);
             return uniquestring;
         }
-        //Writes a CSV file to the current year and month folder.
-        public static void writeSalesRecord(SalesRecord input)
-        {
-            //Manage the path where the CSV files should be saved to.
-            string createdYear = input.getsaleTime().ToString("yyyy");
-            string createdMonth = input.getsaleTime().ToString("MM");
-            string path = folderpathdate(createdYear, createdMonth);
-            string createdDate = input.getsaleTime().ToString("dd-MM-yyyy h_mm_ss tt");
-            path += "\\" + createdDate + ".csv";
-            Console.WriteLine("Saved at: " + path);
-            //Create an array of an array of strings made of the records contents.
-            int length = input.getsaleItems().Count + 1;
-            string[][] record = new string[length][];
-            record[0] = new string[] { "Product Name", "Product Price", "Product Quantity" };
-            for (int i = 1; i < length; i++)
-            {
-                record[i] = new string[] { input.getsaleItems()[i - 1].getProductName(), input.getsaleItems()[i - 1].getProductPrice().ToString(), input.getsaleItems()[i - 1].getProductQuantity().ToString() };
-            }
-            //Add , in order to produce a csv file format.
-            string delimiter = ",";
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < length; i++)
-            {
-                sb.AppendLine(string.Join(delimiter, record[i]));
-            }
-            //Write to the file.
-            File.WriteAllText(path, sb.ToString());
-        }
 
-        /*
+
+
 
         // --- REQUIRES UPDATE: [FORM_DISPLAY] MAYB BE USED ---  *** TESTING ***
         //Writes a CSV file to the current year and month folder.
@@ -357,7 +330,10 @@ namespace Project_V1
 
 
 
-        
+        /*
+           * 
+           * // InProgress************
+           * 
           //Writes a CSV file to the Reports folder.
           public static void writeSalesReport(Report input)
           {
