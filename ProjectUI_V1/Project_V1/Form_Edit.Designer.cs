@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.grpbox_edit = new System.Windows.Forms.GroupBox();
+            this.lbl_date = new System.Windows.Forms.Label();
             this.lbl_name = new System.Windows.Forms.Label();
             this.btn_delete = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.numbox_qty = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,6 +42,7 @@
             this.btn_back = new System.Windows.Forms.Button();
             this.btn_exit = new System.Windows.Forms.Button();
             this.grpbox_start = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.btn_confirm = new System.Windows.Forms.Button();
             this.boxYear = new System.Windows.Forms.ComboBox();
             this.boxMonth = new System.Windows.Forms.ComboBox();
@@ -51,12 +54,9 @@
             this.btn_editsel = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.grpbox_list = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btn_add = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lbl_date = new System.Windows.Forms.Label();
             this.lbl_listdate = new System.Windows.Forms.Label();
+            this.btn_add = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.grpbox_edit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numbox_qty)).BeginInit();
             this.grpbox_start.SuspendLayout();
@@ -82,6 +82,15 @@
             this.grpbox_edit.TabStop = false;
             this.grpbox_edit.Text = "Edit/Add Sales Record:";
             this.grpbox_edit.Visible = false;
+            // 
+            // lbl_date
+            // 
+            this.lbl_date.AutoSize = true;
+            this.lbl_date.Location = new System.Drawing.Point(125, 31);
+            this.lbl_date.Name = "lbl_date";
+            this.lbl_date.Size = new System.Drawing.Size(75, 13);
+            this.lbl_date.TabIndex = 4;
+            this.lbl_date.Text = "DD-MM-YYYY";
             // 
             // lbl_name
             // 
@@ -113,6 +122,15 @@
             this.btn_save.Text = "Save Changes";
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Date and Time: ";
             // 
             // label4
             // 
@@ -192,6 +210,15 @@
             this.grpbox_start.TabIndex = 10;
             this.grpbox_start.TabStop = false;
             this.grpbox_start.Text = "Select a transaction to edit:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(16, 55);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(102, 13);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "List of Transactions:";
             // 
             // btn_confirm
             // 
@@ -303,23 +330,15 @@
             this.grpbox_list.Visible = false;
             this.grpbox_list.Enter += new System.EventHandler(this.grpbox_list_Enter);
             // 
-            // label6
+            // lbl_listdate
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 55);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 13);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "List of Transactions:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 29);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(157, 13);
-            this.label10.TabIndex = 25;
-            this.label10.Text = "List of Product in a Transaction:";
+            this.lbl_listdate.AutoSize = true;
+            this.lbl_listdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_listdate.Location = new System.Drawing.Point(179, 29);
+            this.lbl_listdate.Name = "lbl_listdate";
+            this.lbl_listdate.Size = new System.Drawing.Size(14, 13);
+            this.lbl_listdate.TabIndex = 27;
+            this.lbl_listdate.Text = "_";
             // 
             // btn_add
             // 
@@ -331,32 +350,14 @@
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
-            // label1
+            // label10
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Date and Time: ";
-            // 
-            // lbl_date
-            // 
-            this.lbl_date.AutoSize = true;
-            this.lbl_date.Location = new System.Drawing.Point(125, 31);
-            this.lbl_date.Name = "lbl_date";
-            this.lbl_date.Size = new System.Drawing.Size(75, 13);
-            this.lbl_date.TabIndex = 4;
-            this.lbl_date.Text = "DD-MM-YYYY";
-            // 
-            // lbl_listdate
-            // 
-            this.lbl_listdate.AutoSize = true;
-            this.lbl_listdate.Location = new System.Drawing.Point(179, 29);
-            this.lbl_listdate.Name = "lbl_listdate";
-            this.lbl_listdate.Size = new System.Drawing.Size(13, 13);
-            this.lbl_listdate.TabIndex = 27;
-            this.lbl_listdate.Text = "_";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 29);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(157, 13);
+            this.label10.TabIndex = 25;
+            this.label10.Text = "List of Product in a Transaction:";
             // 
             // Form_Edit
             // 

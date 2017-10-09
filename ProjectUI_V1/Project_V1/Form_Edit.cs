@@ -51,6 +51,10 @@ namespace Project_V1
          
             EditItem(saleItems[Convert.ToInt32(listBox2.SelectedIndex)], Convert.ToInt32(listBox2.SelectedIndex));
 
+
+            numbox_qty.Value = 0;
+            txtbox_price.Text = " ";
+
         }
 
         private void btn_Search_Click(object sender, EventArgs e)
@@ -86,6 +90,9 @@ namespace Project_V1
             lbl_date.Text = listBox1.SelectedItem.ToString();
             lbl_name.Text = listBox2.SelectedItem.ToString();
 
+            numbox_qty.Value = 0;
+            txtbox_price.Text = " ";
+
         }
 
         
@@ -99,6 +106,7 @@ namespace Project_V1
 
         private void btn_confirm_Click(object sender, EventArgs e)
         {
+            grpbox_edit.Visible = false;
             grpbox_list.Visible = true;
             listBox2.Items.Clear();
 
