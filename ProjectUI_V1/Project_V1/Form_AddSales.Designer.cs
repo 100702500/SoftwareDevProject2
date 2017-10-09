@@ -29,10 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btn_finish = new System.Windows.Forms.Button();
             this.btn_cont = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.numbox_qty = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtbox_datetime = new System.Windows.Forms.TextBox();
             this.txtbox_price = new System.Windows.Forms.TextBox();
             this.txtbox_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,10 +50,16 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.btn_finish);
             this.groupBox1.Controls.Add(this.btn_cont);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.numbox_qty);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtbox_datetime);
             this.groupBox1.Controls.Add(this.txtbox_price);
             this.groupBox1.Controls.Add(this.txtbox_name);
             this.groupBox1.Controls.Add(this.label1);
@@ -58,9 +70,46 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add Sales Record:";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(311, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(153, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "This will just be the TIme NOW";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(395, 234);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(27, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "This";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(397, 195);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "This";
+            // 
+            // btn_finish
+            // 
+            this.btn_finish.Location = new System.Drawing.Point(113, 356);
+            this.btn_finish.Name = "btn_finish";
+            this.btn_finish.Size = new System.Drawing.Size(276, 23);
+            this.btn_finish.TabIndex = 4;
+            this.btn_finish.Text = "Finish";
+            this.btn_finish.UseVisualStyleBackColor = true;
+            this.btn_finish.Click += new System.EventHandler(this.btn_finish_Click);
+            // 
             // btn_cont
             // 
-            this.btn_cont.Location = new System.Drawing.Point(116, 297);
+            this.btn_cont.Location = new System.Drawing.Point(113, 327);
             this.btn_cont.Name = "btn_cont";
             this.btn_cont.Size = new System.Drawing.Size(276, 23);
             this.btn_cont.TabIndex = 1;
@@ -68,9 +117,18 @@
             this.btn_cont.UseVisualStyleBackColor = true;
             this.btn_cont.Click += new System.EventHandler(this.btn_cont_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(26, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Date and Time: ";
+            // 
             // numbox_qty
             // 
-            this.numbox_qty.Location = new System.Drawing.Point(225, 172);
+            this.numbox_qty.Location = new System.Drawing.Point(222, 232);
             this.numbox_qty.Name = "numbox_qty";
             this.numbox_qty.Size = new System.Drawing.Size(167, 20);
             this.numbox_qty.TabIndex = 2;
@@ -78,7 +136,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(162, 212);
+            this.label3.Location = new System.Drawing.Point(159, 272);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 0;
@@ -87,22 +145,30 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(170, 174);
+            this.label2.Location = new System.Drawing.Point(167, 234);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Qty:";
             // 
+            // txtbox_datetime
+            // 
+            this.txtbox_datetime.Location = new System.Drawing.Point(138, 46);
+            this.txtbox_datetime.Name = "txtbox_datetime";
+            this.txtbox_datetime.Size = new System.Drawing.Size(167, 20);
+            this.txtbox_datetime.TabIndex = 1;
+            this.txtbox_datetime.TextChanged += new System.EventHandler(this.txtbox_datetime_TextChanged);
+            // 
             // txtbox_price
             // 
-            this.txtbox_price.Location = new System.Drawing.Point(225, 209);
+            this.txtbox_price.Location = new System.Drawing.Point(222, 269);
             this.txtbox_price.Name = "txtbox_price";
             this.txtbox_price.Size = new System.Drawing.Size(167, 20);
             this.txtbox_price.TabIndex = 1;
             // 
             // txtbox_name
             // 
-            this.txtbox_name.Location = new System.Drawing.Point(225, 135);
+            this.txtbox_name.Location = new System.Drawing.Point(222, 195);
             this.txtbox_name.Name = "txtbox_name";
             this.txtbox_name.Size = new System.Drawing.Size(167, 20);
             this.txtbox_name.TabIndex = 1;
@@ -110,7 +176,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(135, 135);
+            this.label1.Location = new System.Drawing.Point(132, 195);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 0;
@@ -159,13 +225,19 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_cont;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtbox_datetime;
         private System.Windows.Forms.TextBox txtbox_name;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtbox_price;
         private System.Windows.Forms.Button btn_exit;
         private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.NumericUpDown numbox_qty;
+        private System.Windows.Forms.Button btn_finish;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
     }
 }
