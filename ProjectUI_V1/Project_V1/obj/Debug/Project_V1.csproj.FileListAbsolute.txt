@@ -58,15 +58,15 @@ C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1
 C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_MainMenu.resources
 C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Properties.Resources.resources
 C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.csproj.GenerateResource.Cache
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.exe.config
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.exe
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.pdb
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.exe
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.pdb
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.csprojResolveAssemblyReference.cache
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_AddSales.resources
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_Display.resources
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_Edit.resources
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_MainMenu.resources
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Properties.Resources.resources
-E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.csproj.GenerateResource.Cache
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.exe.config
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.csprojResolveAssemblyReference.cache
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_AddSales.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_Display.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_Edit.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_MainMenu.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Properties.Resources.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.csproj.GenerateResource.Cache
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\UI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.pdb
