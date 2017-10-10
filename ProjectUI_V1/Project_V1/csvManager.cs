@@ -202,6 +202,41 @@ namespace Project_V1
             }
             return pathresults;
         }
+        public static string selectFileByDate(string condition, List<string> locations)
+        {
+            string[] test = new string[locations.Count];
+
+            int count = 0;
+            //this gets the date and disregards the time
+            foreach (string filename in locations)
+            {
+                test[count] = getDateFromPath(filename);
+                test[count] = test[count];
+                count++;
+            }
+            count = 0;
+
+            List<string> pathresults = new List<string>();
+            //if the date is the same as the required date get its path
+            //TODO: seperate into dd mm yyyy
+            foreach (string date in test)
+            {
+                if (date == condition)
+                {
+                    pathresults.Add(locations[count]);
+                }
+                count++;
+            }
+            return pathresults[0];
+        }
+
+
+
+
+
+
+
+
 
         //Receives a path location and then reads the content of that CSV into saleItems and returns it.
         public static List<Item> readSingleFile(string location)

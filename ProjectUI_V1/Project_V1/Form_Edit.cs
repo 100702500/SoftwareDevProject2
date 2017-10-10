@@ -71,10 +71,9 @@ namespace Project_V1
 
             foreach (string p in paths)
             {
-                dates.Add(csvManager.getDateFromPath(p).Split(' ')[0]);
+                dates.Add(csvManager.getDateFromPath(p));
             }
 
-            dates = csvManager.condensestring(dates);
 
             foreach (string p in dates)
             {
@@ -172,9 +171,10 @@ namespace Project_V1
 
         private void ListProdName(string path)
         {
-
-            List<string> files = csvManager.selectFilesByDate(path, csvManager.selectSetOfFiles());
-            saleItems = csvManager.readSetOfFiles(files);
+            String userMonth = boxMonth.SelectedItem.ToString();
+            String userYear = boxYear.SelectedItem.ToString();
+            string file = csvManager.selectFileByDate(path, csvManager.selectSetOfFiles(userMonth, userYear));
+            saleItems = csvManager.readSingleFile(file);
             printlistofname();
         }
 
@@ -191,12 +191,9 @@ namespace Project_V1
 
         private void printlistofname()
         {
-            int count = 1;
-
             foreach (Item element in saleItems)
             {
                 listBox2.Items.Add(element.getProductName());
-                count++;
             }
         }
 
