@@ -361,6 +361,34 @@ namespace Project_V1
             File.WriteAllText(path, sb.ToString());
         }
 
-
+        /* ------------------------------------------------------*/
+        //Writes a CSV file to the current year and month folder.
+        public static void writeSalesRecord(List<Item> input, DateTime date)
+        {
+            //Manage the path where the CSV files should be saved to.
+            string createdYear = date.ToString("yyyy");
+            string createdMonth = date.ToString("MM");
+            string path = folderpathdate(createdYear, createdMonth);
+            string createdDate = date.ToString("dd-MM-yyyy h_mm_ss tt");
+            path += "\\" + createdDate + ".csv";
+            Console.WriteLine("Saved at: " + path);
+            //Create an array of an array of strings made of the records contents.
+            int length = input.Count + 1;
+            string[][] record = new string[length][];
+            record[0] = new string[] { "Product Name", "Product Price", "Product Quantity" };
+            for (int i = 1; i < length; i++)
+            {
+                record[i] = new string[] { input[i - 1].getProductName(), input[i - 1].getProductPrice().ToString(), input[i - 1].getProductQuantity().ToString() };
+            }
+            //Add , in order to produce a csv file format.
+            string delimiter = ",";
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < length; i++)
+            {
+                sb.AppendLine(string.Join(delimiter, record[i]));
+            }
+            //Write to the file.
+            File.WriteAllText(path, sb.ToString());
+        }
     }
 }

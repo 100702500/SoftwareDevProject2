@@ -50,8 +50,9 @@ namespace Project_V1
             grpbox_list.Visible = true;
          
             EditItem(saleItems[Convert.ToInt32(listBox2.SelectedIndex)], Convert.ToInt32(listBox2.SelectedIndex));
-
-
+            DateTime myDate = DateTime.ParseExact(lbl_listdate.Text, "dd-MM-yyyy h_mm_ss tt",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+            csvManager.writeSalesRecord(saleItems, myDate);
             numbox_qty.Value = 0;
             txtbox_price.Text = " ";
 
