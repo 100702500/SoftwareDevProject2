@@ -13,7 +13,7 @@ namespace Project_V1
         enum Modes {Add, Read, Edit};
 
         List<Item> saleItems;
-        DateTime saleTime;
+        DateTime saleTime = DateTime.Now;
         float saleTotal;
         Stocks itemstock;
         bool tryagain;
@@ -24,6 +24,10 @@ namespace Project_V1
         public DateTime getsaleTime()
         {
             return saleTime;
+        }
+        public void setsaleTime(DateTime input)
+        {
+            saleTime = input;
         }
 
         public List<Item> getsaleItems()
@@ -288,10 +292,13 @@ namespace Project_V1
             }
             
         }
+        public void AddItem(Item i)
+        {
+            saleItems.Add(i);
+        }
 
         public void complete()
         {
-            saleTime = DateTime.Now;
             csvManager.writeSalesRecord(this);
         }
 

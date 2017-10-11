@@ -22,12 +22,22 @@ namespace Project_V1
         SalesRecord ActiveRecord = new SalesRecord(0, stock);
 
 
-
         public Form_AddSales()
         {
-
             InitializeComponent();
         }
+        public Form_AddSales(List<Item> salesitems, DateTime time)
+        {
+            InitializeComponent();
+
+            foreach (Item i in salesitems)
+            {
+                ActiveRecord.AddItem(i);
+            }
+            saleTime = time;
+            ActiveRecord.setsaleTime(saleTime);
+        }
+        
 
 
         private void Form_AddSales_Load(object sender, EventArgs e)
