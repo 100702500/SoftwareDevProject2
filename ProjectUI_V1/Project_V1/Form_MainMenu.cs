@@ -53,7 +53,12 @@ namespace Project_V1
             this.Close();
         }
 
-
-
+        private void btn_reports_Click(object sender, EventArgs e)
+        {
+            Form_Report formReport = new Form_Report();
+            this.Hide();
+            formReport.ShowDialog();
+            this.Close();
+        }
     }
 }

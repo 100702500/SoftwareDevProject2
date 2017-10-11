@@ -82,3 +82,10 @@ C:\Users\Richmondkk\Downloads\SoftwareDevProject2-ProjectUI\SoftwareDevProject2-
 C:\Users\Richmondkk\Downloads\SoftwareDevProject2-ProjectUI\SoftwareDevProject2-ProjectUI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_MainMenu.resources
 C:\Users\Richmondkk\Downloads\SoftwareDevProject2-ProjectUI\SoftwareDevProject2-ProjectUI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Properties.Resources.resources
 C:\Users\Richmondkk\Downloads\SoftwareDevProject2-ProjectUI\SoftwareDevProject2-ProjectUI\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.csproj.GenerateResource.Cache
+C:\Users\Richmondkk\Downloads\SoftwareDevProject2-Zac-UI-Additions\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.exe.config
+C:\Users\Richmondkk\Downloads\SoftwareDevProject2-Zac-UI-Additions\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.exe
+C:\Users\Richmondkk\Downloads\SoftwareDevProject2-Zac-UI-Additions\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.pdb
+C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_Report.resources
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.exe.config
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.exe
+C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.pdb

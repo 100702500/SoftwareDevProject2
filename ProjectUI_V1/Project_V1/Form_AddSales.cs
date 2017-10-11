@@ -37,19 +37,11 @@ namespace Project_V1
         private void btn_cont_Click(object sender, EventArgs e)
         {
                        
-            float f = (float)2.11;
-            ActiveRecord.AddItem(txtbox_name.Text, f, (int)(numbox_qty.Value));
+            string f = stock.getPriceofitemID(txtbox_name.Text);
+            float p = float.Parse(f);
+            ActiveRecord.AddItem(txtbox_name.Text, p, (int)(numbox_qty.Value));
             
-            /*
-            string addDateTime = txtbox_datetime.Text;
-            string addItemName = txtbox_name.Text;
-            int addQty = Convert.ToInt32(numbox_qty.Value);
-            Decimal addPrice = Convert.ToDecimal(txtbox_price.Text);
 
-            //Testing Button Output.
-            MessageBox.Show(saleTime + " " + addDateTime + " " + addItemName + " " 
-                + addQty.ToString() + " " +  addPrice.ToString() ) ;
-            */
         }
 
         private void btn_exit_Click(object sender, EventArgs e)

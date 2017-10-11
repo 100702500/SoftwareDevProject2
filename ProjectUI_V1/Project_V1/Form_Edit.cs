@@ -50,8 +50,9 @@ namespace Project_V1
             grpbox_list.Visible = true;
          
             EditItem(saleItems[Convert.ToInt32(listBox2.SelectedIndex)], Convert.ToInt32(listBox2.SelectedIndex));
-
-
+            DateTime myDate = DateTime.ParseExact(lbl_listdate.Text, "dd-MM-yyyy h_mm_ss tt",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+            csvManager.writeSalesRecord(saleItems, myDate);
             numbox_qty.Value = 0;
             txtbox_price.Text = " ";
 
@@ -71,10 +72,9 @@ namespace Project_V1
 
             foreach (string p in paths)
             {
-                dates.Add(csvManager.getDateFromPath(p).Split(' ')[0]);
+                dates.Add(csvManager.getDateFromPath(p));
             }
 
-            dates = csvManager.condensestring(dates);
 
             foreach (string p in dates)
             {
@@ -91,7 +91,7 @@ namespace Project_V1
             lbl_name.Text = listBox2.SelectedItem.ToString();
 
             numbox_qty.Value = 0;
-            txtbox_price.Text = " ";
+            txtbox_price.Text = "";
 
         }
 
@@ -172,9 +172,10 @@ namespace Project_V1
 
         private void ListProdName(string path)
         {
-
-            List<string> files = csvManager.selectFilesByDate(path, csvManager.selectSetOfFiles());
-            saleItems = csvManager.readSetOfFiles(files);
+            String userMonth = boxMonth.SelectedItem.ToString();
+            String userYear = boxYear.SelectedItem.ToString();
+            string file = csvManager.selectFileByDate(path, csvManager.selectSetOfFiles(userMonth, userYear));
+            saleItems = csvManager.readSingleFile(file);
             printlistofname();
         }
 
@@ -191,12 +192,9 @@ namespace Project_V1
 
         private void printlistofname()
         {
-            int count = 1;
-
             foreach (Item element in saleItems)
             {
                 listBox2.Items.Add(element.getProductName());
-                count++;
             }
         }
 

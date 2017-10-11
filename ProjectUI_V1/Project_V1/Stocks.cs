@@ -87,6 +87,20 @@ namespace Project_V1
             }
             return group;
         }
+        public String getPriceofitemID(string ID)
+        {
+            String group = "";
+            //get all unique groups
+            foreach (string[] str in itemlist)
+            {
+                if (str[0] == ID)
+                {
+                    group = str[3];
+                    break;
+                }
+            }
+            return group;
+        }
         public enum fields
         {
             barcode,
