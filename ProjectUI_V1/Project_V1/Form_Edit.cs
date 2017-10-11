@@ -117,6 +117,12 @@ namespace Project_V1
         private void btn_add_Click(object sender, EventArgs e)
         {
             grpbox_edit.Visible = true;
+            DateTime myDate = DateTime.ParseExact(lbl_listdate.Text, "dd-MM-yyyy h_mm_ss tt",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+            Form_AddSales formAdd = new Form_AddSales(saleItems, myDate);
+            this.Hide();
+            formAdd.ShowDialog();
+            this.Close();
 
         }
         private void grpbox_list_Enter(object sender, EventArgs e)
