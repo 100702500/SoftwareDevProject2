@@ -34,7 +34,8 @@ namespace Project
                 Console.WriteLine("     5. Monthly Report");
                 Console.WriteLine("     6. Weekly Report");
                 Console.WriteLine("     7. Monthly Estimate");
-                Console.WriteLine("     8. Quit");
+                Console.WriteLine("     8. Monthly Group Estimate");
+                Console.WriteLine("     9. Quit");
 
                 userInput = Console.ReadLine();
 
@@ -81,6 +82,11 @@ namespace Project
                         }
                     case "8":
                         {
+                            MonthlyGroupEstimateReport();
+                            break;
+                        }
+                    case "9":
+                        {
                             //Break the loop and exit the program.
                             Loop = false;
                             break;
@@ -126,6 +132,11 @@ namespace Project
         private void MonthlyEstimateReport()
         {
             ActiveReport = new Report(3, stock);
+        }
+
+        private void MonthlyGroupEstimateReport()
+        {
+            ActiveReport = new Report(4, stock);
         }
     }
 }

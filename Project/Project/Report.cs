@@ -9,7 +9,7 @@ namespace Project
 {
     public class Report
     {
-        enum Modes { Monthly, Weekly, Daily, MonthlyEstimate };
+        enum Modes { Monthly, Weekly, Daily, MonthlyEstimate, MonthlyGroupEstimate };
 
         string userInput;
         List<string> fileEntries; 
@@ -49,6 +49,10 @@ namespace Project
             if (Mode == (int)Modes.MonthlyEstimate)
             {
                 MonthlyEstimate();
+            }
+            if (Mode == (int)Modes.MonthlyGroupEstimate)
+            {
+                MonthlyGroupEstimate();
             }
         }
         private void WeeklyReport()
@@ -133,6 +137,45 @@ namespace Project
             }
 
             saleItems = predictedSales;
+
+            saleTime = DateTime.Now;
+            csvManager.writeSalesReport(this, 0);
+        }
+
+        private void MonthlyGroupEstimate()
+        {
+            fileEntries = csvManager.selectSetOfFiles();
+            saleItems = csvManager.readSetOfFiles(fileEntries);
+
+            List<Item> predictedSales = new List<Item>();
+            //predictedSales.Add(new Item(saleItems[0].getProductName(), saleItems[0].getProductPrice(), saleItems[0].getProductQuantity()));
+            foreach (Item element in saleItems)
+            {
+                bool found = false;
+
+                foreach (Item element2 in predictedSales)
+                {
+                    if (itemstock.getgroupofitemID(element.getProductName()) == element2.getProductName())
+                    {
+                        element2.addQuantity(element.getProductQuantity());
+                        found = true;
+                    }  
+                }
+
+                if (!found)
+                {
+                    predictedSales.Add(new Item(itemstock.getgroupofitemID(element.getProductName()), element.getProductPrice(), element.getProductQuantity()));
+                }             
+                found = false;
+            }
+
+            List<Item> predictedSales2 = new List<Item>();
+            foreach (Item element in predictedSales)
+            {
+                predictedSales2.Add(new Item(element.getProductName(), element.getProductPrice(), PerformEstimateMagic(element.getProductQuantity())));
+            }
+
+            saleItems = predictedSales2;
 
             saleTime = DateTime.Now;
             csvManager.writeSalesReport(this, 0);
