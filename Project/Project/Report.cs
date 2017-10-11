@@ -9,7 +9,7 @@ namespace Project
 {
     public class Report
     {
-        enum Modes { Monthly, Weekly, Daily, MonthlyEstimate, MonthlyGroupEstimate };
+        enum Modes { Monthly, Weekly, Daily, MonthlyEstimate, WeeklyEstimate, MonthlyGroupEstimate };
 
         string userInput;
         List<string> fileEntries; 
@@ -54,7 +54,12 @@ namespace Project
             {
                 MonthlyGroupEstimate();
             }
+            if (Mode == (int)Modes.WeeklyEstimate)
+            {
+                WeeklyEstimate();
+            }
         }
+
         private void WeeklyReport()
         {
 
@@ -159,13 +164,13 @@ namespace Project
                     {
                         element2.addQuantity(element.getProductQuantity());
                         found = true;
-                    }  
+                    }
                 }
 
                 if (!found)
                 {
                     predictedSales.Add(new Item(itemstock.getgroupofitemID(element.getProductName()), element.getProductPrice(), element.getProductQuantity()));
-                }             
+                }
                 found = false;
             }
 
@@ -179,6 +184,22 @@ namespace Project
 
             saleTime = DateTime.Now;
             csvManager.writeSalesReport(this, 0);
+        }
+
+        private void WeeklyEstimate()
+        {
+            fileEntries = csvManager.selectWeekOfFiles();
+            saleItems = csvManager.readSetOfFiles(fileEntries);
+            List<Item> predictedSales = new List<Item>();
+
+            foreach (Item element in saleItems)
+            {
+                predictedSales.Add(new Item(element.getProductName(), element.getProductPrice(), PerformEstimateMagic(element.getProductQuantity())));
+            }
+            saleItems = predictedSales;
+
+            saleTime = DateTime.Now;
+            csvManager.writeSalesReport(this, 1);
         }
 
         private int PerformEstimateMagic(int baseQuantity)
