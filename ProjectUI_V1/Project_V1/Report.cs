@@ -51,7 +51,7 @@ namespace Project_V1
                 MonthlyEstimate();
             }
         }
-        private void WeeklyReport()
+        public void WeeklyReport()
         {
 
             fileEntries = csvManager.selectWeekOfFiles();
@@ -62,7 +62,7 @@ namespace Project_V1
 
         }
 
-        private void MonthlyReport()
+        public void MonthlyReport()
         {
             fileEntries = csvManager.selectSetOfFiles();
             saleItems = csvManager.readSetOfFiles(fileEntries);

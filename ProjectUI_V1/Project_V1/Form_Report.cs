@@ -81,9 +81,13 @@ namespace Project_V1
             formMain.ShowDialog();
             this.Close();
         }
+        
 
         private void btn_Weekly_Click(object sender, EventArgs e)
         {
+            Stocks s = new Stocks();
+            Report r = new Report(0, s);
+            r.WeeklyReport();
             lbl_type.Text = "Weekly Report";
             listBox1.Items.Clear();
 
@@ -106,6 +110,9 @@ namespace Project_V1
 
         private void btn_Montly_Click(object sender, EventArgs e)
         {
+            Stocks s = new Stocks();
+            Report r = new Report(0, s);
+            r.MonthlyReport();
             lbl_type.Text = "Monthly Report";
             listBox1.Items.Clear();
 
@@ -145,16 +152,15 @@ namespace Project_V1
 
         private void ReadRecord_Month(string path)
         {
-
-          List<string> files = csvManager.selectFilesByDate(path, csvManager.selectSetOfFiles_ReportMonth());
-          saleItems = csvManager.readSetOfFiles(files);
+            string files = csvManager.selectFileByDate(path, csvManager.selectSetOfFiles_ReportMonth());
+          saleItems = csvManager.readSingleFile(files);
           PrintRecord();
         }
 
         private void ReadRecord_Week(string path)
         {
-            List<string> files = csvManager.selectFilesByDate(path, csvManager.selectSetOfFiles_ReportWeek());
-            saleItems = csvManager.readSetOfFiles(files);
+            string files = csvManager.selectFileByDate(path, csvManager.selectSetOfFiles_ReportWeek());
+            saleItems = csvManager.readSingleFile(files);
             PrintRecord();
         }
 

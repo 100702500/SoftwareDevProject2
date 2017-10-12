@@ -89,3 +89,4 @@ C:\Users\Richmondkk\Documents\GitHub\SoftwareDevProject2\ProjectUI_V1\Project_V1
 C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\ProjectUI_V1\Project_V1\bin\Debug\Project_V1.exe.config
 C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.exe
 C:\Users\Richmondkk\Documents\GitHub\CURRENTLY WORKING ON\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.pdb
+E:\Swinburne\Tools 2\UI6\SoftwareDevProject2\ProjectUI_V1\Project_V1\obj\Debug\Project_V1.Form_Report.resources
